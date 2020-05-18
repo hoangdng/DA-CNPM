@@ -24,7 +24,7 @@ namespace PetWeb.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<ActionResult> Index()
         {
-            
+
             var users = await _userManager.Users.ToListAsync();
             return View(users);
         }
@@ -35,73 +35,33 @@ namespace PetWeb.Controllers
             return View();
         }
 
-        // GET: Users/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Users/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Users/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Users/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         // GET: Users/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(string? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var userToDelete = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == id);
+            if (userToDelete == null)
+            {
+                return NotFound();
+            }
+
+            return View(userToDelete);
         }
 
-        // POST: Users/Delete/5
-        [HttpPost]
+        // POST: Posts/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var userToDelete = await _userManager.FindByIdAsync(id);
+            await _userManager.DeleteAsync(userToDelete);
+            return RedirectToAction("Index");
         }
+
     }
 }
