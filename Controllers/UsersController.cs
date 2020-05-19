@@ -36,7 +36,7 @@ namespace PetWeb.Controllers
         }
 
         // GET: Users/Delete/5
-        public async Task<IActionResult> Delete(string? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
