@@ -7,7 +7,12 @@
 }
 
 <h1>Index</h1>
-
+<form asp-controller="Users" asp-action="Index">
+    <p>
+        Nhập username: <input type="text" name="SearchString">
+        <input type="submit" value="Tìm" />
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>

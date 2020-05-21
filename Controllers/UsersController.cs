@@ -22,13 +22,17 @@ namespace PetWeb.Controllers
         }
         // GET: Users
         [Authorize(Roles = "Administrator")]
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string searchString)
         {
 
             var users = await _userManager.Users.ToListAsync();
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(user => user.UserName.Contains(searchString)).ToList();
+            }
             return View(users);
         }
-
+       
         // GET: Users/Details/5
         public ActionResult Details(int id)
         {
