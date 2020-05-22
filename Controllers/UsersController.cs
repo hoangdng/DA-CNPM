@@ -20,6 +20,7 @@ namespace PetWeb.Controllers
         {
             _userManager = userManager;
         }
+
         // GET: Users
         [Authorize(Roles = "Administrator")]
         public async Task<ActionResult> Index(string searchString, string sortOrder)
@@ -57,6 +58,15 @@ namespace PetWeb.Controllers
         public ActionResult Details(int id)
         {
             return View();
+        }
+
+        // GET: Users/Lock/5
+        public async Task<ActionResult> LockUser(string id)
+        {
+            var userToLock = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == id);
+            await _userManager.SetLockoutEnabledAsync(userToLock, true);
+            await _userManager.SetLockoutEndDateAsync(userToLock, DateTime.Today.AddYears(100));
+            return View("Index", _userManager.Users.ToList());
         }
 
         // GET: Users/Delete/5

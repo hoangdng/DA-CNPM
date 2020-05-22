@@ -131,7 +131,7 @@ namespace PetWeb.Controllers
         }
 
         // GET: Posts/Delete/5
-
+        [HttpDelete]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
