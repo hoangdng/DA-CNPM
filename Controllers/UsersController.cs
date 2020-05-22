@@ -22,17 +22,37 @@ namespace PetWeb.Controllers
         }
         // GET: Users
         [Authorize(Roles = "Administrator")]
-        public async Task<ActionResult> Index(string searchString)
+        public async Task<ActionResult> Index(string searchString, string sortOrder)
         {
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["CurrentFilter"] = searchString;
 
-            var users = await _userManager.Users.ToListAsync();
-            if(!String.IsNullOrEmpty(searchString))
+            //var users = await _userManager.Users.ToListAsync();
+            var users = from user in _userManager.Users select user;
+            if (!String.IsNullOrEmpty(searchString))
             {
-                users = users.Where(user => user.UserName.Contains(searchString)).ToList();
+                users = users.Where(user => user.UserName.Contains(searchString));
             }
-            return View(users);
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    users = users.OrderByDescending(user => user.Name);
+                    break;
+                case "Date":
+                    users = users.OrderBy(users => users.DateJoined);
+                    break;
+                case "date_desc":
+                    users = users.OrderByDescending(users => users.DateJoined);
+                    break;
+                default:
+                    users = users.OrderBy(user => user.Name);
+                    break;
+            }
+            return View(await users.AsNoTracking().ToListAsync());
         }
-       
+
         // GET: Users/Details/5
         public ActionResult Details(int id)
         {

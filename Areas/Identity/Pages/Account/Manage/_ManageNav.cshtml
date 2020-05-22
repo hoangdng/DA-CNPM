@@ -12,9 +12,10 @@
         }
         <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
         <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
-        <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="ViewHistory">History</a></li>
+        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Posts" asp-action="ViewHistory">History</a></li>
         @if (SignInManager.Context.User.IsInRole("Administrator"))
         {
-            <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">All users</a></li>
+            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Users" asp-action="Index">All users</a></li>
+            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Posts" asp-action="Index">All posts</a></li>
         }
     </ul>
