@@ -8,7 +8,15 @@ namespace PetWeb.Data
 {
     public class CustomUser : IdentityUser
     {
+        public CustomUser()
+        {
+            DateJoined = DateTime.Now;
+        }
+
         [PersonalData]
         public string Name { get; set; }
+
+        [PersonalData]
+        public DateTime DateJoined { get; set; }
     }
 }
