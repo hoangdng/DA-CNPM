@@ -36,8 +36,14 @@ namespace PetWeb.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
             [Display(Name = "Your name")]
             public string Name { get; set; }
+
+            [Display(Name = "Date joined")]
+            [DataType(DataType.Date)]
+            public DateTime DateJoined { get; set; }
+
         }
 
         private async Task LoadAsync(CustomUser user)
@@ -50,7 +56,8 @@ namespace PetWeb.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
-                Name = user.Name
+                Name = user.Name,
+                DateJoined = user.DateJoined
             };
         }
 
@@ -95,6 +102,8 @@ namespace PetWeb.Areas.Identity.Pages.Account.Manage
             {
                 user.Name = Input.Name;
             }
+
+
             await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

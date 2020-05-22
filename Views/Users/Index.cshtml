@@ -7,7 +7,15 @@
 }
 
 <h1>Index</h1>
-
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Tìm theo tên: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Tìm" class="btn btn-primary" /> |
+            <a asp-action="Index">Xem toàn bộ danh sách</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -15,10 +23,13 @@
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Name)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.DateJoined)</a>
             </th>
             <th></th>
         </tr>
@@ -37,9 +48,13 @@
                     @Html.DisplayFor(modelItem => item.PhoneNumber)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    @Html.DisplayFor(modelItem => item.DateJoined)
+
+                </td>
+                <td>
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                    <input type="button" value="Block" onclick="location.href='@Url.Action("LockUser", new{ Id = item.Id })'" />
                 </td>
             </tr>
         }

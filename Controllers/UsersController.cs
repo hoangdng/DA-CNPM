@@ -20,13 +20,38 @@ namespace PetWeb.Controllers
         {
             _userManager = userManager;
         }
+
         // GET: Users
         [Authorize(Roles = "Administrator")]
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string searchString, string sortOrder)
         {
-            
-            var users = await _userManager.Users.ToListAsync();
-            return View(users);
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["CurrentFilter"] = searchString;
+
+            //var users = await _userManager.Users.ToListAsync();
+            var users = from user in _userManager.Users select user;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(user => user.UserName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    users = users.OrderByDescending(user => user.Name);
+                    break;
+                case "Date":
+                    users = users.OrderBy(users => users.DateJoined);
+                    break;
+                case "date_desc":
+                    users = users.OrderByDescending(users => users.DateJoined);
+                    break;
+                default:
+                    users = users.OrderBy(user => user.Name);
+                    break;
+            }
+            return View(await users.AsNoTracking().ToListAsync());
         }
 
         // GET: Users/Details/5
@@ -35,73 +60,42 @@ namespace PetWeb.Controllers
             return View();
         }
 
-        // GET: Users/Create
-        public ActionResult Create()
+        // GET: Users/Lock/5
+        public async Task<ActionResult> LockUser(string id)
         {
-            return View();
-        }
-
-        // POST: Users/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Users/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Users/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var userToLock = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == id);
+            await _userManager.SetLockoutEnabledAsync(userToLock, true);
+            await _userManager.SetLockoutEndDateAsync(userToLock, DateTime.Today.AddYears(100));
+            return View("Index", _userManager.Users.ToList());
         }
 
         // GET: Users/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var userToDelete = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == id);
+            if (userToDelete == null)
+            {
+                return NotFound();
+            }
+
+            return View(userToDelete);
         }
 
-        // POST: Users/Delete/5
-        [HttpPost]
+        // POST: Posts/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var userToDelete = await _userManager.FindByIdAsync(id);
+            await _userManager.DeleteAsync(userToDelete);
+            return RedirectToAction("Index");
         }
+
     }
 }
