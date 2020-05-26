@@ -38,15 +38,20 @@ namespace PetWeb
             services.AddAuthentication()
                 .AddFacebook(facebookOptions =>
                 {
-                    facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
-                    facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                    //facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                    //facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                    facebookOptions.AppId = "886550725146613";
+                    facebookOptions.AppSecret = "6e925e3d3af8aa174b4fa2239a82bec2";
                     facebookOptions.AccessDeniedPath = "/Home";
                 })
-                .AddGoogle(options =>
+                .AddGoogle(googleOptions =>
                 {
                     IConfigurationSection googleAuthNSection = Configuration.GetSection("Authentication:Google");
-                    options.ClientId = googleAuthNSection["ClientId"];
-                    options.ClientSecret = googleAuthNSection["ClientSecret"];
+                    //options.ClientId = googleAuthNSection["ClientId"];
+                    //options.ClientSecret = googleAuthNSection["ClientSecret
+                    googleOptions.ClientId = "825950112067-l0q41n4136knmegnu205eh925i7ik86a.apps.googleusercontent.com";
+                    googleOptions.ClientSecret = "6d2f7c4dWQ4i4BE1I4lISC60";
+                    googleOptions.AccessDeniedPath = "/Home";
                 });
 
             services.Configure<IdentityOptions>(options =>
