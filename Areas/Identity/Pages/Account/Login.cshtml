@@ -34,7 +34,7 @@
 
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-info btn-block">Log in</button>
+                    <button type="submit" class="btn btn-login btn-block">Log in</button>
                 </div>
             </form>
         </section>
@@ -55,19 +55,19 @@
                 {
                     <form asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal text-center">
                         <div>
-                            <p>
+                            
                                 @foreach (var provider in Model.ExternalLogins)
                                 {
                                     if (provider.Name == "Facebook")
                                     {
-                                        <button type="submit" class="btn btn-outline-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src=@Url.Content("~/images/icons/facebook.png") alt="Alternate Text" /></button>
+                                        <button type="submit" class="btn btn-outline-primary mr-5" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src=@Url.Content("~/images/icons/facebook.png") alt="Alternate Text" /></button>
                                     }
                                     else
                                     {
-                                        <button type="submit" class="btn btn-outline-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src=@Url.Content("~/images/icons/gg.png") alt="Alternate Text" /></button>
+                                        <button type="submit" class="btn btn-outline-danger" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src=@Url.Content("~/images/icons/gg.png") alt="Alternate Text" /></button>
                                     }
                                 }
-                            </p>
+                            
                         </div>
                     </form>
                 }
