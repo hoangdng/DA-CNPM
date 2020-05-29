@@ -1,0 +1,23 @@
+﻿.btn-signin {
+    background-color: #A8D900;
+    color: white;
+    font-weight: 700;
+}
+
+    .btn-signin:hover {
+        background-color: white;
+        color: black;
+        transition-duration: 0.1s;
+    }
+
+.btn-login {
+    background-color: #E40041;
+    color: white;
+    font-weight: 700;
+}
+
+.btn-login:hover {
+    background-color: white;
+    color: #E40041;
+    transition-duration: 0.1s;
+}

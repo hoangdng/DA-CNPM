@@ -15,25 +15,22 @@
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="Input.Email">Email</label>
-                    <input asp-for="Input.Email" class="form-control" />
+                    <input asp-for="Input.Email" class="form-control" placeholder="Email" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Input.Password">Mật khẩu</label>
-                    <input asp-for="Input.Password" class="form-control" />
+                    <input asp-for="Input.Password" class="form-control" placeholder="Password" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Input.ConfirmPassword">Nhập lại mật khẩu</label>
-                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Nhập lại password"/>
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
-                <button type="submit" class="btn btn-info btn-block mt-4">Đăng ký</button>
+                <button type="submit" class="btn btn-signin btn-block mt-4">Đăng ký</button>
             </form>
         </section>
         <section>
-            <h5 class="text-center pt-5">Đăng ký bằng tài khoản khác: </h5>
+            <h5 class="text-center pt-3">Đăng ký bằng tài khoản khác: </h5>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
@@ -49,19 +46,19 @@
                 {
                     <form asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal text-center">
                         <div>
-                            <p>
+                            
                                 @foreach (var provider in Model.ExternalLogins)
                                 {
                                     if (provider.Name == "Facebook")
                                     {
-                                        <button type="submit" class="btn btn-outline-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src=@Url.Content("~/images/icons/facebook.png") alt="Alternate Text" /></button>
+                                        <button type="submit" class="btn btn-outline-primary mr-5" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src=@Url.Content("~/images/icons/facebook.png") alt="Alternate Text" /></button>
                                     }
                                     else
                                     {
-                                        <button type="submit" class="btn btn-outline-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src=@Url.Content("~/images/icons/gg.png") alt="Alternate Text" /></button>
+                                        <button type="submit" class="btn btn-outline-danger" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src=@Url.Content("~/images/icons/gg.png") alt="Alternate Text" /></button>
                                     }
                                 }
-                            </p>
+                            
                         </div>
                     </form>
                 }

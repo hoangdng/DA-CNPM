@@ -27,11 +27,18 @@ namespace PetWeb.Controllers
             return View(await _context.Posts.ToListAsync());
         }
 
-        public IActionResult Privacy()
+        public IActionResult Contact()
         {
             return View();
         }
-
+        public IActionResult About()
+        {
+            return View();
+        }
+        public async Task<IActionResult> Newsfeed()
+        {
+            return View(await _context.Posts.ToListAsync());
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
