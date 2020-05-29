@@ -5,22 +5,22 @@
     ViewData["Title"] = "Log in";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
+
+<div class="row" style="background-image: url(@Url.Content("~/images/dog.jpg")); background-size: 90% 100%;">
+
+    <div class="col-8">
+    </div>
+    <div class="col-4 d-flex flex-column pr-5 pb-5">
         <section>
+            <h2 class="text-center pt-4">Đăng nhập</h2><hr />
             <form id="account" method="post">
-                <h4>Use a local account to log in.</h4>
-                <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
+                    <input asp-for="Input.Email" class="form-control" placeholder="Email" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
+                    <input asp-for="Input.Password" class="form-control" placeholder="Password" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -29,28 +29,17 @@
                             <input asp-for="Input.RememberMe" />
                             @Html.DisplayNameFor(m => m.Input.RememberMe)
                         </label>
+                        <a class="float-right" id="forgot-password" asp-page="./ForgotPassword">Quên mật khẩu</a>
                     </div>
+
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
+                    <button type="submit" class="btn btn-info btn-block">Log in</button>
                 </div>
             </form>
         </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
         <section>
-            <h4>Use another service to log in.</h4>
+            <h5 class="text-center">Đăng nhập bằng tài khoản khác: </h5>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
@@ -64,12 +53,19 @@
                 }
                 else
                 {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                    <form asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal text-center">
                         <div>
                             <p>
                                 @foreach (var provider in Model.ExternalLogins)
                                 {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    if (provider.Name == "Facebook")
+                                    {
+                                        <button type="submit" class="btn btn-outline-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src=@Url.Content("~/images/icons/facebook.png") alt="Alternate Text" /></button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" class="btn btn-outline-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src=@Url.Content("~/images/icons/gg.png") alt="Alternate Text" /></button>
+                                    }
                                 }
                             </p>
                         </div>
@@ -79,6 +75,8 @@
         </section>
     </div>
 </div>
+
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

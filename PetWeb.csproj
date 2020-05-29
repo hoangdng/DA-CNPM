@@ -5,6 +5,11 @@
     <UserSecretsId>aspnet-PetWeb-0262FF1D-0841-4D2C-AA8C-6E98155BD157</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20200529045427_test.cs" />
+    <Compile Remove="Data\Migrations\20200529045427_test.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.4" />
