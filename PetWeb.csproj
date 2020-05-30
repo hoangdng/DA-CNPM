@@ -12,6 +12,8 @@
     <Compile Remove="Data\Migrations\20200530031923_SetPostedDateToDate.Designer.cs" />
     <Compile Remove="Data\Migrations\20200530032304_SetPostedDateToDate.cs" />
     <Compile Remove="Data\Migrations\20200530032304_SetPostedDateToDate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200530140216_NULL.cs" />
+    <Compile Remove="Data\Migrations\20200530140216_NULL.Designer.cs" />
   </ItemGroup>
 
 

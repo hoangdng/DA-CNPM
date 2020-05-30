@@ -1,5 +1,9 @@
 ﻿
-
+.filter {
+    border: 1px solid #50A3B9;
+    border-left: none;
+    height: 750px;
+}
 .filter-group {
     margin-top: 40px;
 }

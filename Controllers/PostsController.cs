@@ -22,7 +22,7 @@ namespace PetWeb.Controllers
         }
 
         // GET: Posts
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string postedDate)
         {
             return View(await _context.Posts.ToListAsync());
         }
