@@ -8,6 +8,10 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20200529045427_test.cs" />
     <Compile Remove="Data\Migrations\20200529045427_test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200530031923_SetPostedDateToDate.cs" />
+    <Compile Remove="Data\Migrations\20200530031923_SetPostedDateToDate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200530032304_SetPostedDateToDate.cs" />
+    <Compile Remove="Data\Migrations\20200530032304_SetPostedDateToDate.Designer.cs" />
   </ItemGroup>
 
 

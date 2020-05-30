@@ -2,11 +2,11 @@
 @inject SignInManager<PetWeb.Data.CustomUser> SignInManager
 @inject UserManager<PetWeb.Data.CustomUser> UserManager
 
-<ul class="navbar-nav ml-5">
+<ul class="navbar-nav ml-5 pl-5">
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Xin chào @User.Identity.Name!</a>
+            <a class="nav-link text-dark font-weight-bold" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Xin chào, @User.Identity.Name!</a>
         </li>
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -16,11 +16,11 @@
     }
     else
     {
-        <li class="nav-item">
-           <a class="nav-item nav-link" id="btn-adopt" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a>
+        <li class="nav-item ml-5">
+           <a class="nav-item nav-link btn btn-warning text-white mx-2" id="btn-adoptt" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a>
         </li>
         <li class="nav-item">
-            <a class="nav-item nav-link" id="btn-fac" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a>
+            <a class="nav-item nav-link btn btn-danger text-white mx-2" id="btn-facc" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a>
         </li>
     }
 </ul>
