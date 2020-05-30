@@ -35,10 +35,7 @@ namespace PetWeb.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Newsfeed()
-        {
-            return View(await _context.Posts.ToListAsync());
-        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

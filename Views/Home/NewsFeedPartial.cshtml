@@ -1,0 +1,107 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<PetWeb.Data.CustomUser> UserManager
+
+<div class="col-3 filter pl-5">
+    <h3 class="mb-3">Bộ lọc tìm kiếm</h3>
+    <div class="filter-group">
+        <h6>Thành phố</h6>
+        <div class="checkbox-label">
+            <input type="checkbox" value="Danang" id="cb-danang" />
+            Đà Nẵng
+        </div>
+        <div class="checkbox-label">
+            <input type="checkbox" value="Saigon" />
+            TP. Hồ Chí Minh
+        </div>
+        <div class="checkbox-label">
+            <input type="checkbox" value="Hanoi" />
+            Hà Nội
+        </div>
+        <div class="checkbox-label">
+            <input type="checkbox" value="OthersPlace" />
+            Nơi khác
+        </div>
+    </div>
+    <hr />
+    <div class="filter-group">
+        <h6>Động vật</h6>
+        <div class="checkbox-label">
+            <input type="checkbox" value="Dog" />
+            Chó
+            <div class="checkbox-label">
+                <input type="checkbox" value="Cat" />
+                Mèo
+            </div>
+            <div class="checkbox-label">
+                <input type="checkbox" value="Others" />
+                Khác
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="filter-group">
+        <h6>Loại tin</h6>
+        <div class="checkbox-label">
+            <input type="checkbox" value="adopt" />
+            Nhận nuôi
+        </div>
+        <div class="checkbox-label">
+            <input type="checkbox" value="disease" />
+            Bệnh tật
+        </div>
+        <div class="checkbox-label">
+            <input type="checkbox" value="help" />
+            Cần giúp đỡ
+        </div>
+    </div>
+</div>
+<div class="col-9" id="newsfeed">
+    <div class="card-columns">
+        @foreach (var item in Model)
+        {
+            if (item.Title == "Mèo bị rớt hố")
+            {
+                <div class="card border-info  mb-3">
+                    <img class="card-img-top" src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <span>@item.PostedDate.ToString("dd MMM yyyy")</span>
+                        <button class="btn btn-outline-info" type="button" data-toggle="modal" data-target="#myModal"
+                                data-title="@item.Title" data-description="@item.Description" data-picture=""
+                                data-user="@UserManager.Users.ToList().Find(User => User.Id == item.UserID).PhoneNumber" data-date="@item.PostedDate">
+                            Xem chi tiết
+                        </button>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <img class="card-img-top" src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text" id="description"></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <p class="font-weight-bold">Liên hệ người đăng: </p>
+                        <p id="user"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
