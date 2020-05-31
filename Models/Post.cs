@@ -16,6 +16,7 @@ namespace PetWeb.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string ImageURL { get; set; }
         [DataType(DataType.Date)]
         public DateTime PostedDate { get; set; }
         public Status Status { get; set; }
