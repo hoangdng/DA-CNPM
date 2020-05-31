@@ -1,4 +1,6 @@
-
+#headerFixed {
+  
+}
 #headerFixed .navbar-nav {
     height: 50px;
     display: flex;
