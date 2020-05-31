@@ -16,4 +16,5 @@ $('#myModal').on('show.bs.modal', function (event) {
     modal.find('.modal-body #description').text(description);
     modal.find('.modal-footer #user').text(user);
     modal.find('.modal-footer #date').text(date);
+    modal.find('.modal-body img').attr("src", image);
 })
