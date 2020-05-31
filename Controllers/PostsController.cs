@@ -22,7 +22,7 @@ namespace PetWeb.Controllers
         }
 
         // GET: Posts
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string postedDate)
         {
             return View(await _context.Posts.ToListAsync());
         }
@@ -64,7 +64,7 @@ namespace PetWeb.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,PostedDate,Status")] Post post)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,PostedDate,Status,ImageURL")] Post post)
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             post.UserID = currentUserId;

@@ -1,8 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject UserManager<PetWeb.Data.CustomUser> UserManager
 
+
 <div class="col-3 filter pl-5">
-    <h3 class="mb-3">Bộ lọc tìm kiếm</h3>
+    <h3 class="my-3">Bộ lọc tìm kiếm</h3>
     <div class="filter-group">
         <h6>Thành phố</h6>
         <div class="checkbox-label">
@@ -54,28 +55,44 @@
             Cần giúp đỡ
         </div>
     </div>
+    <hr />
+    <div class="filter-group">
+        <h6>Ngày đăng</h6>
+        @using (Html.BeginForm("ReloadIndex", "Home"))
+        {
+            <input value="today" name="duration" type="radio" onclick="this.form.submit()" />
+            <label for="today">Hôm nay</label><br />
+
+            <input value="3days" name="duration" type="radio" onclick="this.form.submit()" />
+            <label for="3days">Trong 3 ngày</label><br />
+
+            <input value="week" name="duration" type="radio" onclick="this.form.submit()" />
+            <label for="week">Tuần này</label><br />
+
+            <input value="all" name="duration" type="radio" onclick="this.form.submit()" />
+            <label for="all">Tất cả</label><br />
+        }
+    </div>
 </div>
 <div class="col-9" id="newsfeed">
     <div class="card-columns">
         @foreach (var item in Model)
         {
-            if (item.Title == "Mèo bị rớt hố")
-            {
-                <div class="card border-info  mb-3">
-                    <img class="card-img-top" src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Title</h5>
-                    </div>
-                    <div class="card-footer d-flex justify-content-between">
-                        <span>@item.PostedDate.ToString("dd MMM yyyy")</span>
-                        <button class="btn btn-outline-info" type="button" data-toggle="modal" data-target="#myModal"
-                                data-title="@item.Title" data-description="@item.Description" data-picture=""
-                                data-user="@UserManager.Users.ToList().Find(User => User.Id == item.UserID).PhoneNumber" data-date="@item.PostedDate">
-                            Xem chi tiết
-                        </button>
-                    </div>
+            <div class="card border-info  mb-3">
+                <img class="card-img-top" src="@item.ImageURL" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
                 </div>
-            }
+                <div class="card-footer d-flex justify-content-between">
+                    <span>@item.PostedDate.ToString("dd MMM yyyy")</span>
+                    <button class="btn btn-outline-info" type="button" data-toggle="modal" data-target="#myModal"
+                            data-title="@item.Title" data-description="@item.Description" data-picture=""
+                            data-user="@UserManager.Users.ToList().Find(User => User.Id == item.UserID).PhoneNumber" data-date="@item.PostedDate">
+                        Xem chi tiết
+                    </button>
+                </div>
+            </div>
+
         }
     </div>
 

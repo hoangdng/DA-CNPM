@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -25,6 +25,26 @@ namespace PetWeb.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Posts.ToListAsync());
+        }
+
+        public async Task<IActionResult> ReloadIndex(IFormCollection collection)
+        {
+            var posts =  _context.Posts.Select(p => p);
+            switch (collection.ToArray()[0].Value.ToString())
+            {
+                case "today":
+                    posts = posts.Where(p => p.PostedDate.Date == DateTime.Now.Date);
+                    break;
+                case "3days":
+                    posts = posts.Where(p => p.PostedDate.Date.AddDays(3) >= DateTime.Now.Date);
+                    break;
+                case "week":
+                    posts = posts.Where(p => p.PostedDate.Date.AddDays(7) >= DateTime.Now.Date);
+                    break;
+                default:
+                    break;
+            }
+            return View("Index", await posts.ToListAsync());
         }
 
         public IActionResult Contact()
