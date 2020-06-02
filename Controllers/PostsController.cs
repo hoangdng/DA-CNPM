@@ -64,7 +64,7 @@ namespace PetWeb.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,PostedDate,Status,ImageURL")] Post post)
+        public async Task<IActionResult> Create([Bind("Title,Description,AnimalId,ImageURL")] Post post)
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             post.UserID = currentUserId;
