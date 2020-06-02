@@ -10,16 +10,14 @@
                 <a id="dropdownMenuLink" class="nav-link text-dark font-weight-bold dropdown-toggle" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="Identity"
                    asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name!</a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" asp-area="" asp-controller="Posts" asp-action="">Your Posts</a>
                     <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Settings</a>
+                    <form class="form-inline d-flex justify-content-center" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="nav-link btn btn-danger text-white">Đăng xuất</button>
+                    </form>
                 </div>
             </div>
-        </li>
-        <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-outline-warning">Đăng xuất</button>
-            </form>
         </li>
     }
     else
