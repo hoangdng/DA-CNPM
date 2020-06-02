@@ -21,6 +21,8 @@ namespace PetWeb.Models
         public DateTime PostedDate { get; set; }
         public Status Status { get; set; }
         public string UserID { get; set; }
+        public int AnimalId { get; set; }
+        public Animal Animal { get; set; }
     }
 
     public enum Status

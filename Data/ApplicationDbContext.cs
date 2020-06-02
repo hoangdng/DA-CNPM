@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PetWeb.Models;
 
 namespace PetWeb.Data
 {
@@ -19,6 +20,7 @@ namespace PetWeb.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<PetWeb.Models.Post> Posts { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Animal> Animals { get; set; }
     }
 }
