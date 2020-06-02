@@ -14,6 +14,8 @@
     <Compile Remove="Data\Migrations\20200530032304_SetPostedDateToDate.Designer.cs" />
     <Compile Remove="Data\Migrations\20200530140216_NULL.cs" />
     <Compile Remove="Data\Migrations\20200530140216_NULL.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200602133701_AddCategoryProperty.cs" />
+    <Compile Remove="Data\Migrations\20200602133701_AddCategoryProperty.Designer.cs" />
   </ItemGroup>
 
 

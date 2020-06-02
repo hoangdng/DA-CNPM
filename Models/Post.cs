@@ -23,6 +23,8 @@ namespace PetWeb.Models
         public string UserID { get; set; }
         public int AnimalId { get; set; }
         public Animal Animal { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 
     public enum Status

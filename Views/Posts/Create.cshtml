@@ -23,13 +23,22 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AnimalId" class="control-label"></label>
+                <label asp-for="AnimalId" class="control-label">Loại động vật:</label>
                 <select asp-for="AnimalId" class="form-control">
-                    <option value=4>Mèo</option>
-                    <option value=5>Chó</option>
-                    <option value=6>Khác</option>
+                    <option value=1>Mèo</option>
+                    <option value=2>Chó</option>
+                    <option value=3>Khác</option>
                 </select>
-                <span asp-validation-for="Status" class="text-danger"></span>
+                <span asp-validation-for="AnimalId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label">Loại cứu trợ:</label>
+                <select asp-for="CategoryId" class="form-control">
+                    <option value=1>Nhận nuôi</option>
+                    <option value=2>Bệnh tật</option>
+                    <option value=3>Giúp đỡ</option>
+                </select>
+                <span asp-validation-for="AnimalId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ImageURL" class="control-label">Link ảnh</label>
