@@ -10,5 +10,5 @@ namespace PetWeb.Models
         public int AnimalId { get; set; }
         public string Name { get; set; }
         public ICollection<Post> Posts { get; set; }
-    }
+    }vcv
 }
