@@ -34,7 +34,7 @@
         </div>
     </nav>
     @*header*@
-    <div class="@(ViewContext.RouteData.Values["Action"]!=null?ViewContext.RouteData.Values["Action"].ToString().Contains("Index") ? "container-fluid" : "container":"container")">
+    <div class="@(ViewContext.RouteData.Values["Action"]!=null?ViewContext.RouteData.Values["Action"].ToString().Contains("Index") || ViewContext.RouteData.Values["Action"].ToString().Contains("Contact") ? "container-fluid" : "container":"container")">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
