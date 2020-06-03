@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PetWeb.Data;
 using PetWeb.Models;
+using PetWeb.ViewModels;
 
 namespace PetWeb.Controllers
 {
@@ -27,26 +28,6 @@ namespace PetWeb.Controllers
             return View(await _context.Posts.ToListAsync());
         }
 
-        public async Task<IActionResult> ReloadIndex(IFormCollection collection)
-        {
-            var posts =  _context.Posts.Select(p => p);
-            switch (collection.ToArray()[0].Value.ToString())
-            {
-                case "today":
-                    posts = posts.Where(p => p.PostedDate.Date == DateTime.Now.Date);
-                    break;
-                case "3days":
-                    posts = posts.Where(p => p.PostedDate.Date.AddDays(3) >= DateTime.Now.Date);
-                    break;
-                case "week":
-                    posts = posts.Where(p => p.PostedDate.Date.AddDays(7) >= DateTime.Now.Date);
-                    break;
-                default:
-                    break;
-            }
-            return View("Index", await posts.ToListAsync());
-        }
-
         public IActionResult Contact()
         {
             return View();
@@ -55,7 +36,39 @@ namespace PetWeb.Controllers
         {
             return View();
         }
+        public ViewResult FilterIndex(IFormCollection collection)
+        {
+            var filteredPosts = _context.Posts.Select(p => p);
+            //Filtered by posted date
+            var duration = collection.ContainsKey("duration") == false ? "all" : collection["duration"][0];
+            switch (duration)
+            {
+                case "today":
+                    filteredPosts = filteredPosts.Where(p => p.PostedDate.Date == DateTime.Now.Date);
+                    break;
+                case "3days":
+                    filteredPosts = filteredPosts.Where(p => p.PostedDate.Date.AddDays(3) >= DateTime.Now.Date);
+                    break;
+                case "week":
+                    filteredPosts = filteredPosts.Where(p => p.PostedDate.Date.AddDays(7) >= DateTime.Now.Date);
+                    break;
+                default:
+                    break;
+            }
 
+            //Filter by category
+            var category = collection["category"].ToArray();
+            if (category.Length != 0)
+                filteredPosts = filteredPosts.Where(p => category.Contains(p.Category.Name));
+
+            //Filter by animal
+            var animal = collection["animal"].ToArray();
+            if (animal.Length != 0)
+                filteredPosts = filteredPosts.Where(p => animal.Contains(p.Animal.Name));
+
+
+            return View("Index", filteredPosts);
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

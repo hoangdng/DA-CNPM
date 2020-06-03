@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PetWeb.Models.Post>
+﻿@model IEnumerable<PetWeb.Models.Post> 
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -87,6 +87,7 @@
     <h1 class="display-1 text-center mb-5" style="font-family: 'Pangolin', cursive;">Bảng tin cứu trợ</h1>
 </div>
 <div class="row">
+    <partial name="FilterPartial" />
     <partial name="NewsFeedPartial" />
 </div>
 
