@@ -1,4 +1,4 @@
-﻿@model PetWeb.Models.Post
+﻿@model PetWeb.ViewModels.PostViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label">Tiêu đề</label>
@@ -51,7 +51,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="ImageURL" class="control-label">Link ảnh</label>
-                <input asp-for="ImageURL" class="form-control" />
+                <input asp-for="ImageURL" class="" type="file"/>
                 <span asp-validation-for="ImageURL" class="text-danger"></span>
             </div>
             <div class="form-group">

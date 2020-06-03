@@ -17,7 +17,7 @@
 <body>
     @*header*@
     <nav class="navbar navbar-expand-lg navbar-light bg-white" id="headerFixed">
-        <a class="navbar-brand ml-5 pl-5" asp-area="" asp-controller="Posts" asp-action="Index">
+        <a class="navbar-brand ml-5 pl-5" asp-area="" asp-controller="Home" asp-action="Index">
             <img src=@Url.Content("~/images/icons/logo.png") alt="Pet Club Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
@@ -26,6 +26,7 @@
         <div class="collapse navbar-collapse ml-5 pl-5" id="navbarNavAltMarkup">
             <div class="navbar-nav mx-5 h6">
                 <a class="nav-item nav-link @(ViewContext.RouteData.Values["Action"]!=null?ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "":"")" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ </a>
+                <a class="nav-item nav-link @(ViewContext.RouteData.Values["Action"]!=null?ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "active" : "":"")" asp-area="" asp-controller="Posts" asp-action="Create">Đăng bài </a>
                 <a class="nav-item nav-link @(ViewContext.RouteData.Values["Action"]!=null?ViewContext.RouteData.Values["Action"].ToString() == "Contact" ? "active" : "":"")" asp-area="" asp-controller="Home" asp-action="Contact">Liên hệ</a>
                 <a class="nav-item nav-link @(ViewContext.RouteData.Values["Action"]!=null?ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active" : "":"")" asp-area="" asp-controller="Home" asp-action="About">Về chúng tôi</a>
             </div>
@@ -33,7 +34,7 @@
         </div>
     </nav>
     @*header*@
-    <div class="@(ViewContext.RouteData.Values["Action"]!=null?ViewContext.RouteData.Values["Action"].ToString().Contains("Index") ? "container-fluid" : "container":"container")">
+    <div class="@(ViewContext.RouteData.Values["Action"]!=null?ViewContext.RouteData.Values["Action"].ToString().Contains("Index") || ViewContext.RouteData.Values["Action"].ToString().Contains("Contact") ? "container-fluid" : "container":"container")">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
