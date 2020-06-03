@@ -1,6 +1,7 @@
-﻿.post-db 
-{
-    font-size:14px;
+﻿.post-db {
+    font-size: 14px;
+    border-collapse: separate;
+    border-spacing: 5em;
 }
 
 .searchbar {
@@ -19,4 +20,8 @@
 .add-post-btn {
     color: #fff;
     font-size:12px;
+}
+
+.post-list {
+    
 }

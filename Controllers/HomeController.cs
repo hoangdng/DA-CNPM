@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PetWeb.Data;
 using PetWeb.Models;
+using MailKit.Net.Smtp;
+using MimeKit;
 
 namespace PetWeb.Controllers
 {
@@ -61,5 +63,35 @@ namespace PetWeb.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult SendEmail()
+        {
+            string toEmail = HttpContext.Request.Form["sub_email"];
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("huutaibk", "huutaibkdn@gmail.com"));
+            message.To.Add(new MailboxAddress("user", toEmail));
+            message.Subject = "Subject";
+
+            message.Body = new TextPart("plain")
+            {
+                Text = "Hello World"
+            };
+
+            using (var client = new MailKit.Net.Smtp.SmtpClient())
+            {
+
+                client.Connect("smtp.gmail.com", 465, true);
+
+                //SMTP server authentication if needed
+                client.Authenticate("huutaibkdn@gmail.com", "huutai123456");
+
+                client.Send(message);
+
+                client.Disconnect(true);
+            }
+            return View();
+        }
+
+
     }
 }

@@ -90,3 +90,9 @@
     <partial name="NewsFeedPartial" />
 </div>
 
+<div class="card w-100 p-3 m-0 border-0">
+    <form class="d-flex justify-content-center form-inline" method="post" asp-action="SendEmail" asp-controller="Home">
+        <input class="mr-2" type="text" name="sub_email"/>
+        <input class="btn btn-primary" type="submit" value="Subscribe" />
+    </form>
+</div>

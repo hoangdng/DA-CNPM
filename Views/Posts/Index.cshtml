@@ -5,51 +5,73 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostedDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
+
+    <div class="searchbar-container d-flex mt-4">
+        <form class="form-inline d-flex flex-row mb-2 mr-auto">
+            <i class="fas fa-search mr-2" aria-hidden="true"></i>
+            <input type="text" class="form-control searchbar" id="" placeholder="Search">
+        </form>
+
+        <form class="form-group"  asp-action="Create" asp-controller="Posts">
+            <button type="submit"  class="btn btn-primary add-post-btn"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </form>
+        <div class="form-group add-post-btn-container" >
+            <button type="submit" class="btn btn-primary add-post-btn"><i class="fa fa-minus" aria-hidden="true"></i></button>
+        </div>
+        <div class="form-group ml-1 mr-1">
+            <button type="submit" class="btn btn-primary add-post-btn"><i class="fas fa-list" aria-hidden="true"></i></button>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary add-post-btn"><i class="fas fa-th" aria-hidden="true"></i></button>
+        </div>
+    </div>
+
+
+<div class="d-flex justify-content-center">
+    <table class="table table-hover thead-dark h-50 w-75 mx-2 post-db shadow-sm ">
+        <thead class="thead-dark">
+            <tr  onclick="window.location='#';">
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PostedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody >
+            @foreach (var item in Model)
+            {
+                <tr class="p-0 my-2">
 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="">
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
