@@ -1,23 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PetWeb.Data;
 using PetWeb.Models;
+using PetWeb.ViewModels;
 
 namespace PetWeb.Controllers
 {
     public class PostsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public PostsController(ApplicationDbContext context)
+        private readonly ApplicationDbContext Context;
+        private readonly IWebHostEnvironment WebHostEnvironment;
+        public PostsController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
+            Context = context;
+            WebHostEnvironment = webHostEnvironment;
             _context = context;
         }
 
@@ -64,18 +72,47 @@ namespace PetWeb.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Description,AnimalId,CategoryId,ImageURL")] Post post)
+        public async Task<IActionResult> Create([Bind("Title,Description,AnimalId,CategoryId,ImageURL")] PostViewModel vm)
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            post.UserID = currentUserId;
-            if (ModelState.IsValid)
+            vm.UserID = currentUserId;
+            string stringFileName = UploadFile(vm);
+            var post = new Post
             {
-                _context.Add(post);
-                await _context.SaveChangesAsync();
+                Title = vm.Title,
+                Description = vm.Description,
+                PostedDate = vm.PostedDate,
+                Status = vm.Status,
+                AnimalId = vm.AnimalId,
+                CategoryId = vm.CategoryId,
+                ImageURL = stringFileName
+            };
+            //if (ModelState.IsValid)
+            //{ 
+                Context.Posts.Add(post);
+                await Context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(post);
+            //}
+            //return View(vm);
         }
+
+        private string UploadFile(PostViewModel vm)
+        {
+            string fileName = null;
+            if (vm.ImageURL!=null)
+            {
+                string uploadDir = Path.Combine(WebHostEnvironment.WebRootPath, "images");
+                fileName = Guid.NewGuid().ToString() + "-" + vm.ImageURL.FileName;
+                string filePath = Path.Combine(uploadDir, fileName);
+                using(var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    vm.ImageURL.CopyTo(fileStream);
+                }
+            }
+            return fileName;
+        }
+
+
 
         // GET: Posts/Edit/5
         public async Task<IActionResult> Edit(int? id)

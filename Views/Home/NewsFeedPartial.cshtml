@@ -7,18 +7,18 @@
         @foreach (var item in Model)
         {
             <div class="card border-info  mb-3">
-                <img class="card-img-top card-thumbnail" src="@item.ImageURL" alt="Card image cap">
+                <img class="card-img-top card-thumbnail" src="~/images/@item.ImageURL" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">@item.Title</h5>
                 </div>
-                <div class="card-footer d-flex justify-content-between">
+                @*<div class="card-footer d-flex justify-content-between">
                     <span>@item.PostedDate.ToString("dd MMM yyyy")</span>
                     <button class="btn btn-outline-info" type="button" data-toggle="modal" data-target="#myModal"
                             data-title="@item.Title" data-description="@item.Description" data-image="@item.ImageURL"
                             data-user="@UserManager.Users.ToList().Find(User => User.Id == item.UserID).PhoneNumber" data-date="@item.PostedDate">
                         Xem chi tiết
                     </button>
-                </div>
+                </div>*@
             </div>
 
         }
