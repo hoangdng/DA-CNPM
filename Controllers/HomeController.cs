@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PetWeb.Data;
 using PetWeb.Models;
-using PetWeb.ViewModels;
 
 namespace PetWeb.Controllers
 {
@@ -66,9 +65,14 @@ namespace PetWeb.Controllers
             if (animal.Length != 0)
                 filteredPosts = filteredPosts.Where(p => animal.Contains(p.Animal.Name));
 
+            //Filter by area
+            var area = collection.ContainsKey("area") == false ? "all" : collection["area"][0];
+            if (area != "all")
+                filteredPosts = filteredPosts.Where(p => p.City.Name == area);
 
             return View("Index", filteredPosts);
         }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
