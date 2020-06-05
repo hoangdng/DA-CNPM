@@ -22,5 +22,6 @@ namespace PetWeb.Data
 
         public DbSet<Post> Posts { get; set; }
         public DbSet<Animal> Animals { get; set; }
+        public DbSet<Subscriber> Subscribers { get; set; }
     }
 }

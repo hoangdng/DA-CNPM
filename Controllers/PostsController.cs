@@ -68,12 +68,15 @@ namespace PetWeb.Controllers
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             post.UserID = currentUserId;
+
             if (ModelState.IsValid)
             {
-                _context.Add(post);
+                _context.Add(post);    
                 await _context.SaveChangesAsync();
+               
                 return RedirectToAction(nameof(Index));
             }
+
             return View(post);
         }
 

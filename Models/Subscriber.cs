@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace PetWeb.Models
 {
-    public class Subscribe
+    public class Subscriber
     {
+        public int SubscriberID { get; set; }
+        public string Email { get; set; }
     }
 }

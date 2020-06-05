@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PetWeb.Data;
 using PetWeb.Models;
-using MailKit.Net.Smtp;
-using MimeKit;
+
+
 
 namespace PetWeb.Controllers
 {
@@ -64,32 +64,24 @@ namespace PetWeb.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult SendEmail()
+        
+        public async Task<IActionResult> Subscribe()
         {
-            string toEmail = HttpContext.Request.Form["sub_email"];
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("huutaibk", "huutaibkdn@gmail.com"));
-            message.To.Add(new MailboxAddress("user", toEmail));
-            message.Subject = "Subject";
-
-            message.Body = new TextPart("plain")
+            string email = HttpContext.Request.Form["sub_email"];
+            if (!_context.Subscribers.Any(s => s.Email == email))
             {
-                Text = "Hello World"
-            };
-
-            using (var client = new MailKit.Net.Smtp.SmtpClient())
-            {
-
-                client.Connect("smtp.gmail.com", 465, true);
-
-                //SMTP server authentication if needed
-                client.Authenticate("huutaibkdn@gmail.com", "huutai123456");
-
-                client.Send(message);
-
-                client.Disconnect(true);
+                Subscriber s = new Subscriber
+                {
+                    Email = email
+                };
+                _context.Subscribers.Add(s);
+                await _context.SaveChangesAsync();
+                return View();
             }
-            return View();
+            else
+            {
+                return View();
+            }
         }
 
 
