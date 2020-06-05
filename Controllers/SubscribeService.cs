@@ -31,13 +31,18 @@ namespace PetWeb.Controllers
         }
         public Task StartAsync(CancellationToken cancellationToken)
         {
+            long due_time;
             DateTime time_now = DateTime.Now;
             DateTime time_send = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 12, 59, 0);
-            long due_time =  (long) time_send.Subtract(time_now).TotalSeconds;
-            if (due_time <= 0)
+            if (TimeSpan.Compare(time_now.TimeOfDay, time_send.TimeOfDay) == -1)
+            {
+                due_time = (long) time_send.Subtract(time_now).TotalSeconds;
+            }
+            else
             {
                 DateTime tomorrow = DateTime.Today.AddDays(1);
-                time_send = new DateTime(tomorrow.Year, DateTime.Today.Month, DateTime.Today.Day, 12, 55, 0);
+                time_send = new DateTime(tomorrow.Year, tomorrow.Month, tomorrow.Day, 12, 59, 0);
+                due_time = (long)time_send.Subtract(time_now).TotalSeconds;
             }   
             _timer = new Timer(SendEmail, null, due_time*1000, 360000*24);
            
