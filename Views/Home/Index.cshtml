@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PetWeb.Models.Post> 
+﻿
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -78,7 +78,7 @@
         <a class="btn btn-warning text-white btn-lg" asp-controller="Home" asp-action="About">Về chúng tôi</a>
     </div>
     <div class="text-center col-3">
-        <img src="~/images/cats.png" class="img-fluid"/>
+        <img src="~/images/cats.png" class="img-fluid" />
     </div>
 </div>
 
@@ -88,7 +88,10 @@
 </div>
 
 <div class="row">
-    <partial name="FilterPartial" />
-    <partial name="NewsFeedPartial" />
+    <div class="col-3 filter pl-5">
+        <partial name="FilterPartial" />
+    </div>
+    <div class="col-9" id="newsfeed">
+        <partial name="NewsFeedPartial" />
+    </div>
 </div>
-
