@@ -1,52 +1,52 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject UserManager<PetWeb.Data.CustomUser> UserManager
+@model IEnumerable<PetWeb.Models.Post>
 
 
-<div class="col-9" id="newsfeed">
-    <div class="card-columns">
-        @foreach (var item in Model)
-        {
-            <div class="card border-info  mb-3">
-                <img class="card-img-top card-thumbnail" src="~/images/@item.ImageURL" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">@item.Title</h5>
-                </div>
-                <div class="card-footer d-flex justify-content-between">
-                    <span>@item.PostedDate.ToString("dd MMM yyyy")</span>
-                    <button class="btn btn-outline-info" type="button" data-toggle="modal" data-target="#myModal"
-                            data-title="@item.Title" data-description="@item.Description" data-image="@item.ImageURL"
-                            data-user="@UserManager.Users.ToList().Find(User => User.Id == item.UserID).PhoneNumber" data-date="@item.PostedDate">
-                        Xem chi tiết
-                    </button>
-                </div>
+<div class="card-columns">
+    @foreach (var item in Model)
+    {
+        <div class="card border-info  mb-3">
+            <img class="card-img-top card-thumbnail" src="~/images/@item.ImageURL" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@item.Title</h5>
             </div>
+            <div class="card-footer d-flex justify-content-between">
+                <span>@item.PostedDate.ToString("dd MMM yyyy")</span>
+                <button class="btn btn-outline-info" type="button" data-toggle="modal" data-target="#myModal"
+                        data-title="@item.Title" data-description="@item.Description" data-image="@item.ImageURL"
+                        data-user="@UserManager.Users.ToList().Find(User => User.Id == item.UserID).PhoneNumber" data-date="@item.PostedDate">
+                    Xem chi tiết
+                </button>
+            </div>
+        </div>
 
-        }
-    </div>
+    }
+</div>
 
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <img class="card-img-top" src="" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text" id="description"></p>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text" id="description"></p>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <p class="font-weight-bold">Liên hệ người đăng: </p>
-                        <p id="user"></p>
-                    </div>
+                <div class="modal-footer">
+                    <p class="font-weight-bold">Liên hệ người đăng: </p>
+                    <p id="user"></p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+

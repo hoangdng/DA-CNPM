@@ -11,10 +11,10 @@
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="Identity"
                    asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name!</a>
                 <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" asp-area="" asp-controller="Posts" asp-action="">Your Posts</a>
-                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Settings</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Posts" asp-action="ViewHistory">Bài đăng của bạn</a>
+                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Tài khoản</a>
                     <form class="form-inline d-flex justify-content-center" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                        <button type="submit" class="nav-link btn btn-danger text-white">Đăng xuất</button>
+                        <button type="submit" class="dropdown-item" onclick="return confirm('Bạn muốn đăng xuất?');">Đăng xuất</button>
                     </form>
                 </div>
             </div>

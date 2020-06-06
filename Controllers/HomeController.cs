@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,7 +36,8 @@ namespace PetWeb.Controllers
         {
             return View();
         }
-        public ViewResult FilterIndex(IFormCollection collection)
+
+        public PartialViewResult FilterIndex(IFormCollection collection)
         {
             var filteredPosts = _context.Posts.Select(p => p);
             //Filtered by posted date
@@ -70,7 +72,9 @@ namespace PetWeb.Controllers
             if (area != "all")
                 filteredPosts = filteredPosts.Where(p => p.City.Name == area);
 
-            return View("Index", filteredPosts);
+
+            return PartialView("NewsFeedPartial", filteredPosts.ToList());
+        
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -78,5 +82,6 @@ namespace PetWeb.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

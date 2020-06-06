@@ -1,6 +1,7 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
+
 // Write your JavaScript code.
 $('#myModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
@@ -17,4 +18,25 @@ $('#myModal').on('show.bs.modal', function (event) {
     modal.find('.modal-footer #user').text(user);
     modal.find('.modal-footer #date').text(date);
     modal.find('.modal-body img').attr("src", image);
+});
+
+$('#create-form').submit(function () {
+    toastr.success("Đăng bài thành công");
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "swing",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
 })

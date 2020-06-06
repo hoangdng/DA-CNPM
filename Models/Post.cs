@@ -14,11 +14,15 @@ namespace PetWeb.Models
             Status = Status.Available;
         }
         public int Id { get; set; }
+        [Display(Name = "Tiêu đề")]
         public string Title { get; set; }
+        [Display(Name = "Mô tả")]
         public string Description { get; set; }
         public string ImageURL { get; set; }
         [DataType(DataType.Date)]
+        [Display(Name = "Ngày đăng")]
         public DateTime PostedDate { get; set; }
+        [Display(Name = "Trạng thái")]
         public Status Status { get; set; }
         public string UserID { get; set; }
         public int AnimalId { get; set; }
