@@ -1,0 +1,98 @@
+﻿@model PetWeb.ViewModels.UserViewModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-4">
+        <h2>Thông tin cơ bản</h2>
+    </div>
+    <div class="col-8">
+        <h2>Các bài đã đăng</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <div class="row">
+            <div class="col-5">
+                <h6>Username:</h6>
+
+            </div>
+            <div class="col-7">
+                <p>@Model.Username</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5">
+                <h6>Ngày tham gia:</h6>
+
+            </div>
+            <div class="col-7">
+                <p>@Model.DateJoined</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5">
+                <h6>SĐT:</h6>
+
+            </div>
+            <div class="col-7">
+                <p>
+                    @if (Model.Phone != null)
+                    {
+                        @Model.Phone
+                    }
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-5">
+                <h6>Tên:</h6>
+            </div>
+            <div class="col-7">
+                <p>
+                    @if (Model.Name != null)
+                    {
+                        @Model.Name
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Tiêu đề
+                    </th>
+                    <th>
+                        Ngày đăng
+                    </th>
+                    <th>
+                        Trạng thái
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Posts)
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id" asp-controller="Posts">@Html.DisplayFor(modelItem => item.Title)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PostedDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -31,6 +31,7 @@ namespace PetWeb.Models
         public Category Category { get; set; }
         public int CityId { get; set; }
         public City City { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 
     public enum Status

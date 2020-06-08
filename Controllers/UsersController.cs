@@ -9,16 +9,19 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PetWeb.Data;
+using PetWeb.ViewModels;
 
 namespace PetWeb.Controllers
 {
     public class UsersController : Controller
     {
         private readonly UserManager<CustomUser> _userManager;
+        private readonly ApplicationDbContext _context;
 
-        public UsersController(UserManager<CustomUser> userManager)
+        public UsersController(ApplicationDbContext context, UserManager<CustomUser> userManager)
         {
             _userManager = userManager;
+            _context = context;
         }
 
         // GET: Users
@@ -55,9 +58,19 @@ namespace PetWeb.Controllers
         }
 
         // GET: Users/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(string id)
         {
-            return View();
+            var currentUser = await _userManager.FindByIdAsync(id);
+            var posts = await _context.Posts.Where(p => p.UserID == id).ToListAsync();
+            UserViewModel userViewModel = new UserViewModel()
+            {
+                Username = currentUser.UserName,
+                Phone = currentUser.PhoneNumber,
+                Name = currentUser.Name,
+                DateJoined = currentUser.DateJoined,
+                Posts = posts
+            };
+            return View(userViewModel);
         }
 
         // GET: Users/Lock/5
