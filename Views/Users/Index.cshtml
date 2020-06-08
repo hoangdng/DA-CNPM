@@ -37,26 +37,27 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">
                     @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateJoined)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateJoined)
 
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                    <input class="btn btn-danger" type="button" value="Block" onclick="location.href='@Url.Action("LockUser", new{ Id = item.Id })'" />
-                </td>
-            </tr>
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                <input class="btn btn-danger" type="button" value="Block" onclick="location.href='@Url.Action("LockUser", new{ Id = item.Id })'" />
+            </td>
+        </tr>
         }
     </tbody>
 </table>

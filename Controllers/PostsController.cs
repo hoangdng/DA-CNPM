@@ -92,7 +92,7 @@ namespace PetWeb.Controllers
             {
                 _context.Add(post);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ViewHistory));
             }
             return View(vm);
         }

@@ -10,7 +10,7 @@ namespace PetWeb.Data
             : base(options)
         {
         }
-        
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -24,5 +24,6 @@ namespace PetWeb.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Animal> Animals { get; set; }
         public DbSet<City> Cities { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }
