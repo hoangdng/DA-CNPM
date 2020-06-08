@@ -14,18 +14,22 @@ using Microsoft.EntityFrameworkCore;
 using PetWeb.Data;
 using PetWeb.Models;
 using PetWeb.ViewModels;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace PetWeb.Controllers
 {
     public class PostsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<CustomUser> _userManager;
 
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public PostsController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
+        public PostsController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment, UserManager<CustomUser> userManager)
         {
             _webHostEnvironment = webHostEnvironment;
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Posts
@@ -200,6 +204,25 @@ namespace PetWeb.Controllers
         private bool PostExists(int id)
         {
             return _context.Posts.Any(e => e.Id == id);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(IFormCollection collection)
+        {
+            int postId = Convert.ToInt32(collection["postId"][0]);
+            var currentPost = _context.Posts.Where(p => p.Id == postId).FirstOrDefault();
+            string username = collection["userId"][0];
+            string userId = _userManager.Users.Where(user => user.Email == username).Select(user => user.Id).FirstOrDefault().ToString();
+            Comment newComment = new Comment()
+            {
+                Content = collection["comment"][0],
+                UserID = userId,
+                PostId = currentPost.Id,
+                Post = currentPost
+            };
+            _context.Add(newComment);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Details", new { id = postId });
         }
     }
 }
