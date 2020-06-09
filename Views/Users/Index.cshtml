@@ -1,0 +1,63 @@
+﻿
+@model IEnumerable<PetWeb.Data.CustomUser>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Tìm theo tên: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Tìm" class="btn btn-primary" /> |
+            <a asp-action="Index">Xem toàn bộ danh sách</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Name)</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.DateJoined)</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateJoined)
+
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                <input class="btn btn-danger" type="button" value="Block" onclick="location.href='@Url.Action("LockUser", new{ Id = item.Id })'" />
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

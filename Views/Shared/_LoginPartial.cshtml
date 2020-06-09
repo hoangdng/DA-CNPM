@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<PetWeb.Data.CustomUser> SignInManager
+@inject UserManager<PetWeb.Data.CustomUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+    <li class="nav-item">
+        <div class="dropdown">
+            <a id="dropdownMenuLink" class="nav-link text-dark font-weight-bold dropdown-toggle" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="Identity"
+               asp-page="/Account/Manage/Index" title="Manage"><img class="img-responsive" src="~/images/icons/user.svg" alt="Alternate Text" style="width:32px;" /></a>
+            <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" asp-area="" asp-controller="Posts" asp-action="ViewHistory">Bài đăng của bạn</a>
+                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Tài khoản</a>
+                <form class="form-inline d-flex justify-content-center" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="dropdown-item" onclick="return confirm('Bạn muốn đăng xuất?');">Đăng xuất</button>
+                </form>
+            </div>
+        </div>
+    </li>
+    }
+    else
+    {
+    <li class="nav-item">
+        <a class="nav-item nav-link btn btn-warning text-white mx-2" id="btn-adoptt" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-item nav-link btn btn-danger text-white mx-2" id="btn-facc" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a>
+    </li>
+    }
+</ul>

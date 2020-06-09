@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*slide show at the beginning*@
+<div id="myCarousel" class="carousel slide shadow-lg" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active" id="firstSlide">
+            <div>
+                <h1>Tham gia cùng chúng tôi ngay hôm nay</h1>
+                <p> cộng đồng phi lợi nhuận đến từ Việt Nam, hoạt động vì tình yêu với động vật.</p>
+                <a href="https://www.facebook.com/C%E1%BB%A8U-TR%E1%BB%A2-%C4%90%E1%BB%98NG-V%E1%BA%ACT-108183060917509/">
+                    Xem thêm thông tin
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </div>
+            <img class="d-block w-100" src="~/images/firstslide.jpg" alt="First slide">
+        </div>
+        <div class="carousel-item" id="secondSlide">
+            <div>
+                <h1>Hơn 200 chó, mèo, ... đã tìm được cho mình một mái ấm</h1>
+                <p>
+                    kết nối những người yêu động vật, cùng nhau giúp đỡ những sinh vật gặp khó khăn, là mục đích chúng mình tạo ra cộng đồng này.
+                </p>
+                <a href="https://www.facebook.com/C%E1%BB%A8U-TR%E1%BB%A2-%C4%90%E1%BB%98NG-V%E1%BA%ACT-108183060917509/">
+                    Xem thêm thông tin
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </div>
+            <img class="d-block w-100" src="~/images/secondslide.jpg" alt="Second slide">
+        </div>
+        <div class="carousel-item" id="thirdSlide">
+            <div>
+                <h1>Hãy cùng chung tay với bọn mình nhé</h1>
+                <p>mọi sự giúp đỡ dù là nhỏ nhất đều đáng được trân trọng</p>
+                <a asp-area="" asp-controller="Home" asp-action="Contact">
+                    Donate
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </div>
+            <img class="d-block w-100" src="~/images/thirdslide.jpg" alt="Third slide">
+        </div>
+        <div class="carousel-item" id="fourthSlide">
+            <div>
+                <h1>Cùng nhau chia sẻ kiến thức, cùng nhau phát triển</h1>
+                <p>
+                    đừng ngại ngần liên hệ với bọn mình nếu bạn có bất kì câu hỏi hay đóng góp nào nhé.
+                </p>
+                <a asp-area="" asp-controller="Home" asp-action="Contact">
+                    Liên hệ ngay
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </div>
+            <img class="d-block w-100" src="~/images/fourthslide.jpg" alt="Fourth slide">
+        </div>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon w-50 h-50" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+@*about us*@
+<div class="row px-5 py-5 shadow">
+    <div class="col-9 mt-5 pl-5">
+        <h3>Vietnam Pet Rescue team:</h3>
+        <p id="quote">
+            "Động vật là để yêu thương, là một người bạn bên chúng ta những lúc buồn vui,
+            nên hãy trân trọng nó, coi như là một phần trong cuộc sống."
+        </p>
+        <a class="btn btn-warning text-white btn-lg" asp-controller="Home" asp-action="About">Về chúng tôi</a>
+    </div>
+    <div class="text-center col-3">
+        <img src="~/images/cats.png" class="img-fluid" />
+    </div>
+</div>
+
+@*main content*@
+<div class="text-center mt-5" id="home">
+    <h1 class="display-1 text-center mb-5" style="font-family: 'Pangolin', cursive;">Bảng tin cứu trợ</h1>
+</div>
+
+<div class="row">
+    <div class="col-3 filter pl-5">
+        <partial name="FilterPartial" />
+    </div>
+    <div class="col-9" id="newsfeed">
+        <partial name="NewsFeedPartial" />
+    </div>
+</div>

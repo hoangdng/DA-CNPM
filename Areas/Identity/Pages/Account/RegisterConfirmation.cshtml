@@ -1,0 +1,23 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Xác nhận email đăng ký";
+}
+
+<h1 class="text-info">@ViewData["Title"]</h1>
+@{
+    if (@Model.DisplayConfirmAccountLink)
+    {
+        <p class="text-info">
+            Một email xác nhận đăng ký tài khoản đã được gởi đến @Model.Email,
+            hãy kiểm tra email của bạn. <br />
+            <a id="confirm-link" href="@Model.EmailConfirmationUrl">Click here to confirm your account (for develop phase)</a>
+        </p>
+    }
+    else
+    {
+        <p>
+            Vui lòng kiểm tra email của bạn.
+        </p>
+    }
+}

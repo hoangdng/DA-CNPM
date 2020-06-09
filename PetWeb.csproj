@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-PetWeb-0262FF1D-0841-4D2C-AA8C-6E98155BD157</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20200529045427_test.cs" />
+    <Compile Remove="Data\Migrations\20200529045427_test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200530031923_SetPostedDateToDate.cs" />
+    <Compile Remove="Data\Migrations\20200530031923_SetPostedDateToDate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200530032304_SetPostedDateToDate.cs" />
+    <Compile Remove="Data\Migrations\20200530032304_SetPostedDateToDate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200530140216_NULL.cs" />
+    <Compile Remove="Data\Migrations\20200530140216_NULL.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200602133701_AddCategoryProperty.cs" />
+    <Compile Remove="Data\Migrations\20200602133701_AddCategoryProperty.Designer.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+    <PackageReference Include="toastr" Version="2.1.1" />
+  </ItemGroup>
+
+</Project>

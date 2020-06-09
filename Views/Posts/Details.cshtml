@@ -1,0 +1,68 @@
+﻿
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<PetWeb.Data.CustomUser> UserManager
+@model PetWeb.Models.Post
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row">
+    <h4>Post</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PostedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PostedDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class="col-sm-2">
+            Loại động vật
+        </dt>
+        <dd class="col-sm-10">
+            @switch (Model.AnimalId)
+            {
+                case 4:
+            <p>Mèo</p>
+                    break;
+                case 5:
+            <p> Chó </p>
+                    break;
+                default:
+            <p>Khác</p>
+                    break;
+            }
+        </dd>
+    </dl>
+</div>
+<div class="row">
+    <form method="post" action="/Posts/AddComment">
+        <input class="form-element" name="comment" type="text" />
+        <label for="comment">Comment</label>
+        <br />
+        <input class="form-element" value=@User.Identity.Name name="userId" type="hidden" />
+        <input type="hidden" value=@Model.Id name="postId"/>
+        <button type="submit">Đăng</button>
+    </form>
+</div>
