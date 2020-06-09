@@ -10,70 +10,129 @@
 
 
 
-<div class="row">
-    <h4>Post</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Post.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Post.Title)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Post.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Post.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Post.PostedDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Post.PostedDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Post.Status)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Post.Status)
-        </dd>
-        <dt class="col-sm-2">
-            Loại động vật
-        </dt>
-        <dd class="col-sm-10">
-            @switch (Model.Post.AnimalId)
-            {
-                case 4:
-                    <p>Mèo</p>
-                    break;
-                case 5:
-                    <p> Chó </p>
-                    break;
-                default:
-                    <p>Khác</p>
-                    break;
-            }
-        </dd>
-    </dl>
+
+
+<div class="row mt-5">
+    <div class="col-6">
+        <img src="~/Images/@Model.Post.ImageURL" alt="Picture" class="img-fluid" />
+    </div>
+    <div class="col-6 mt-5 px-5">
+        <h4>@Model.Post.Title</h4>
+        <p>
+            @Model.Post.Description
+        </p>
+        <div class="row">
+            <div class="col-6">
+                <h6>
+                    Ngày đăng:
+                    <span> @Model.Post.PostedDate.ToString("dd/MM/yyyy")</span>
+                </h6>
+                <h6>
+                    Địa điểm:
+
+                    @switch (Model.Post.CityId)
+                    {
+                        case 1:
+                            <span>
+                                Đà Nẵng
+                            </span>
+                            break;
+                        case 2:
+                            <span>
+                                Hà Nội
+                            </span>
+                            break;
+                        case 3:
+                            <span>
+                                Tp. Hồ Chí Minh
+                            </span>
+                            break;
+                        default:
+                            <span>
+                                Khu vực khác
+                            </span>
+                            break;
+
+                    }
+                </h6>
+            </div>
+            <div class="col-6">
+                <h6>
+                    Động vật:
+
+                    @switch (Model.Post.AnimalId)
+                    {
+                        case 1:
+                            <span>
+                                Mèo
+                            </span>
+                            break;
+                        case 2:
+                            <span>
+                                Chó
+                            </span>
+                            break;
+                        default:
+                            <span>
+                                Khác
+                            </span>
+                            break;
+                    }
+                </h6>
+                <h6>
+                    Loại cứu trợ:
+
+                    @switch (Model.Post.CategoryId)
+                    {
+                        case 1:
+                            <span>
+                                Nhận nuôi
+                            </span>
+                            break;
+                        case 2:
+                            <span>
+                                Bệnh tật
+                            </span>
+                            break;
+                        default:
+                            <span>
+                                Giúp đỡ
+                            </span>
+                            break;
+                    }
+                </h6>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="">
-    @foreach(var comment in Model.Comments)
-    {
-        <div>@comment.Content</div>
-    }
-</div>
+
+
+
 @if (SignInManager.IsSignedIn(User))
-{ 
-    <div class="row">
-        <form method="post" action="/Posts/AddComment">
-            <input class="form-element" name="comment" type="text" />
-            <label for="comment">Comment</label>
-            <br />
-            <input class="form-element" value=@User.Identity.Name name="userId" type="hidden" />
-            <input type="hidden" value=@Model.Post.Id name="postId" />
-            <button type="submit">Đăng</button>
-        </form>
+{
+    <div class="row mt-5">
+        <div class="col-6">
+            <form method="post" action="/Posts/AddComment">
+                <textarea class="form-element" name="comment" cols="75" rows="3"> </textarea>
+                <br />
+                <input class="form-element" value=@User.Identity.Name name="userId" type="hidden" />
+                <input type="hidden" value=@Model.Post.Id name="postId" />
+                <button type="submit" class="btn btn-primary float-right">Đăng</button>
+            </form>
+        </div>
     </div>
 }
 
+<div class="mt-5">
+    @foreach (var comment in Model.Comments)
+    {
+    <div class="row">
+        <h6 class="mr-5">@comment.Username</h6>
+        <p class="ml-5">@comment.DateComment</p>
+    </div>
+        
+
+        <div>@comment.Content</div>
+        <hr />
+    }
+</div>

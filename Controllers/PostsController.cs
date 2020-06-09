@@ -127,12 +127,12 @@ namespace PetWeb.Controllers
             {
                 return NotFound();
             }
-
             var post = await _context.Posts.FindAsync(id);
             if (post == null)
             {
                 return NotFound();
             }
+
             return View(post);
         }
 
@@ -172,7 +172,6 @@ namespace PetWeb.Controllers
             }
             return View(post);
         }
-
         // GET: Posts/Delete/5
 
         public async Task<IActionResult> Delete(int? id)
@@ -215,11 +214,10 @@ namespace PetWeb.Controllers
             int postId = Convert.ToInt32(collection["postId"][0]);
             var currentPost = _context.Posts.Where(p => p.Id == postId).FirstOrDefault();
             string username = collection["userId"][0];
-            string userId = _userManager.Users.Where(user => user.Email == username).Select(user => user.Id).FirstOrDefault().ToString();
             Comment newComment = new Comment()
             {
                 Content = collection["comment"][0],
-                UserID = userId,
+                Username = username,
                 PostId = currentPost.Id,
                 Post = currentPost
             };
