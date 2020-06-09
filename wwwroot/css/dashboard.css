@@ -1,0 +1,45 @@
+﻿.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #283043;
+    border-color: #1861ac;
+    font-size: 14px;
+}
+
+.menu-item {
+    padding-right: 30px;
+    padding-left: 0;
+    margin: 0;
+}
+
+.menu-link {
+    font-size: 14px;
+    padding: 5px 10px;
+    margin: 0;
+    color: #000;
+}
+
+    .menu-link:hover {
+        background-color: #dedbe6;
+        color: #000;
+    }
+
+.manage-info h4 {
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+
+.btn-primary {
+    background-color: #283043;
+    border-color: #283043;
+    font-size: 14px;
+}
+
+.form-control {
+    font-size: 14px;
+}
+
+/*Login partial*/
+.dropdown-menu {
+    font-size: 14px;
+}

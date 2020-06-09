@@ -341,6 +341,21 @@ namespace PetWeb.Data.Migrations
                     b.ToTable("Posts");
                 });
 
+            modelBuilder.Entity("PetWeb.Models.Subscriber", b =>
+                {
+                    b.Property<int>("SubscriberID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SubscriberID");
+
+                    b.ToTable("Subscribers");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)

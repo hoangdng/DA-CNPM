@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using PetWeb.Services;
+using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 
 namespace PetWeb
 {
@@ -82,6 +83,8 @@ namespace PetWeb
             // using WebPWrecover.Services;
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
+            
+            services.AddHttpContextAccessor();
 
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();

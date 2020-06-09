@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using PetWeb.Data;
 using PetWeb.Models;
 
+
 namespace PetWeb.Controllers
 {
     public class HomeController : Controller
@@ -75,6 +76,33 @@ namespace PetWeb.Controllers
 
             return PartialView("NewsFeedPartial", filteredPosts.ToList());
         
+        }
+
+        public async Task<IActionResult> Subscribe()
+        {
+            string email = HttpContext.Request.Form["sub_email"];
+            if (!_context.Subscribers.Any(s => s.Email == email))
+            {
+                Subscriber s = new Subscriber
+                {
+                    Email = email
+                };
+                _context.Subscribers.Add(s);
+                await _context.SaveChangesAsync();
+                return View();
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public async Task<IActionResult> Unsubscribe()
+        {
+            string mailid = HttpContext.Request.Query["mailid"].ToString();
+            var mail = await _context.Subscribers.FirstOrDefaultAsync(m => m.Email == mailid);
+            _context.Subscribers.Remove(mail);
+            await _context.SaveChangesAsync();
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

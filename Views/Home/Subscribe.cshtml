@@ -1,0 +1,7 @@
+﻿@{
+    ViewData["Title"] = "Subscribe";
+}
+
+<h1>Bạn đã đăng ký nhận thông báo</h1>
+<a class="@(ViewContext.RouteData.Values["Action"]!=null?ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "":"")" asp-area="" asp-controller="Home" asp-action="Index">Về trang chủ </a>
+
