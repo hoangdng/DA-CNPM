@@ -1,13 +1,15 @@
-﻿@model PetWeb.Models.Post
-
+﻿
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<PetWeb.Data.CustomUser> UserManager
+@model PetWeb.Models.Post
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
 
-<div>
+
+<div class="row">
     <h4>Post</h4>
     <hr />
     <dl class="row">
@@ -42,19 +44,25 @@
             @switch (Model.AnimalId)
             {
                 case 4:
-                    <p>Mèo</p>
+            <p>Mèo</p>
                     break;
                 case 5:
-                    <p> Chó </p>
+            <p> Chó </p>
                     break;
                 default:
-                    <p>Khác</p>
+            <p>Khác</p>
                     break;
             }
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="ViewHistory">Back to List</a>
+<div class="row">
+    <form method="post" action="/Posts/AddComment">
+        <input class="form-element" name="comment" type="text" />
+        <label for="comment">Comment</label>
+        <br />
+        <input class="form-element" value=@User.Identity.Name name="userId" type="hidden" />
+        <input type="hidden" value=@Model.Id name="postId"/>
+        <button type="submit">Đăng</button>
+    </form>
 </div>
