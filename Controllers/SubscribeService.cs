@@ -14,12 +14,13 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace PetWeb.Controllers
 {
     public class SubscribeService : IHostedService, IDisposable
     {
-   
 
         private readonly IServiceScopeFactory _scopeFactory;
         private Timer _timer;
@@ -33,7 +34,7 @@ namespace PetWeb.Controllers
         {
             long due_time;
             DateTime time_now = DateTime.Now;
-            DateTime time_send = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 12, 59, 0);
+            DateTime time_send = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 10, 42, 0);
             if (TimeSpan.Compare(time_now.TimeOfDay, time_send.TimeOfDay) == -1)
             {
                 due_time = (long) time_send.Subtract(time_now).TotalSeconds;
@@ -41,7 +42,7 @@ namespace PetWeb.Controllers
             else
             {
                 DateTime tomorrow = DateTime.Today.AddDays(1);
-                time_send = new DateTime(tomorrow.Year, tomorrow.Month, tomorrow.Day, 12, 59, 0);
+                time_send = new DateTime(tomorrow.Year, tomorrow.Month, tomorrow.Day, 10, 42, 0);
                 due_time = (long)time_send.Subtract(time_now).TotalSeconds;
             }   
             _timer = new Timer(SendEmail, null, due_time*1000, 360000*24);
@@ -74,13 +75,14 @@ namespace PetWeb.Controllers
                         var post_id = context.Posts.Select(p => p.Id);
                         var list_id = post_id.ToList();
 
-                        string content = string.Format("Có {0} bài viết mới. \n", list_id.Count);
+                        string content = string.Format("Có {0} bài viết mới. <br/> <a href=\"https://localhost:44331/Home/Unsubcribe/?mailid={1}\">Link</a>", list_id.Count, mail);
                         
+
                         message.From.Add(new MailboxAddress("huutaibk", "huutaibkdn@gmail.com"));
                         message.To.Add(new MailboxAddress("user", mail));
                         message.Subject = "Subject";
 
-                        message.Body = new TextPart("plain")
+                        message.Body = new TextPart("html")
                         {
                             Text = content
                         };
@@ -109,5 +111,7 @@ namespace PetWeb.Controllers
         {
             _timer?.Dispose();
         }
+
+      
     }
 }

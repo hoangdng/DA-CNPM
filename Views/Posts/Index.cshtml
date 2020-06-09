@@ -13,17 +13,14 @@
             <input type="text" class="form-control searchbar" id="" placeholder="Search">
         </form>
 
-        <form class="form-group"  asp-action="Create" asp-controller="Posts">
-            <button type="submit"  class="btn btn-primary add-post-btn"><i class="fa fa-plus" aria-hidden="true"></i></button>
-        </form>
-        <div class="form-group add-post-btn-container" >
-            <button type="submit" class="btn btn-primary add-post-btn"><i class="fa fa-minus" aria-hidden="true"></i></button>
-        </div>
+        <a asp-action="Create" class="btn btn-primary post-btn mr-1" role="button" aria-pressed="true"><i class="fa fa-plus" aria-hidden="true"></i></a>
+        
+        <a asp-action="Delete" class="btn btn-primary post-btn mr-1  add-post-btn-container" role="button" aria-pressed="true"><i class="fa fa-minus" aria-hidden="true"></i></a>
         <div class="form-group ml-1 mr-1">
-            <button type="submit" class="btn btn-primary add-post-btn"><i class="fas fa-list" aria-hidden="true"></i></button>
+            <button type="submit" class="btn btn-primary post-btn"><i class="fas fa-list" aria-hidden="true"></i></button>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary add-post-btn"><i class="fas fa-th" aria-hidden="true"></i></button>
+            <button type="submit" class="btn btn-primary post-btn"><i class="fas fa-th" aria-hidden="true"></i></button>
         </div>
     </div>
 
@@ -31,7 +28,7 @@
 <div class="d-flex justify-content-center">
     <table class="table table-hover thead-dark h-50 w-75 mx-2 post-db shadow-sm ">
         <thead class="thead-dark">
-            <tr  onclick="window.location='#';">
+            <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Title)
 
@@ -51,18 +48,19 @@
         <tbody >
             @foreach (var item in Model)
             {
-                <tr class="p-0 my-2">
+                <tr >
 
-                    <td>
+                    <td onClick="location.href='@Url.Action("Details", "Posts", new { Id = item.Id })'">
                         @Html.DisplayFor(modelItem => item.Title)
+                        
                     </td>
-                    <td>
+                    <td onClick="location.href='@Url.Action("Details", "Posts", new { Id = item.Id })'">
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
-                    <td>
+                    <td onClick="location.href='@Url.Action("Details", "Posts", new { Id = item.Id })'">
                         @Html.DisplayFor(modelItem => item.PostedDate)
                     </td>
-                    <td>
+                    <td onClick="location.href='@Url.Action("Details", "Posts", new { Id = item.Id })'">
                         @Html.DisplayFor(modelItem => item.Status)
                     </td>
                     <td>

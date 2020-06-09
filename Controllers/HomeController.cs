@@ -31,7 +31,7 @@ namespace PetWeb.Controllers
 
         public async Task<IActionResult> ReloadIndex(IFormCollection collection)
         {
-            var posts =  _context.Posts.Select(p => p);
+            var posts = _context.Posts.Select(p => p);
             switch (collection.ToArray()[0].Value.ToString())
             {
                 case "today":
@@ -64,7 +64,7 @@ namespace PetWeb.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        
+
         public async Task<IActionResult> Subscribe()
         {
             string email = HttpContext.Request.Form["sub_email"];
@@ -84,6 +84,17 @@ namespace PetWeb.Controllers
             }
         }
 
+    
+        public async Task<IActionResult> Unsubscribe()
+        {
+            string mailid = HttpContext.Request.Query["mailid"].ToString();
+            var mail = await _context.Subscribers.FirstOrDefaultAsync(m => m.Email == mailid);
+            _context.Subscribers.Remove(mail);
+            await _context.SaveChangesAsync();
+            return View();
+        }
+
 
     }
+        
 }

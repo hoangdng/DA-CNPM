@@ -9,5 +9,6 @@ namespace PetWeb.Models
     {
         public int SubscriberID { get; set; }
         public string Email { get; set; }
+        
     }
 }

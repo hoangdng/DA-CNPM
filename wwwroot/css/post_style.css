@@ -1,7 +1,5 @@
 ﻿.post-db {
     font-size: 14px;
-   
-   
 
 }
 
@@ -18,9 +16,11 @@
     border-right: 1px solid;
 }
 
-.add-post-btn {
+.post-btn {
     color: #fff;
     font-size:12px;
+    height:35px;
+    width:35px;
 }
 
 .post-list {
