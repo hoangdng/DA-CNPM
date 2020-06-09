@@ -8,7 +8,8 @@
 <h1>Tạo bài đăng mới</h1>
 
 <hr />
-<div class="row">
+<div class="row" style="background-image: url(@Url.Content("~/images/dog1.jpg")); background-size: 100% 100%;">
+
     <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data" method="post" id="create-form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>

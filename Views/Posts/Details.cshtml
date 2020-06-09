@@ -13,11 +13,11 @@
 
 
 <div class="row mt-5">
-    <div class="col-6">
+    <div class="col-6 shadow">
         <img src="~/Images/@Model.Post.ImageURL" alt="Picture" class="img-fluid" />
     </div>
-    <div class="col-6 mt-5 px-5">
-        <h4>@Model.Post.Title</h4>
+    <div class="col-6 mt-2 px-5">
+        <h2 style="font-family: 'Pangolin', cursive;">@Model.Post.Title</h2>
         <p>
             @Model.Post.Description
         </p>
@@ -25,7 +25,7 @@
             <div class="col-6">
                 <h6>
                     Ngày đăng:
-                    <span> @Model.Post.PostedDate.ToString("dd/MM/yyyy")</span>
+                    <span class="font-weight-normal"> @Model.Post.PostedDate.ToString("dd/MM/yyyy")</span>
                 </h6>
                 <h6>
                     Địa điểm:
@@ -33,27 +33,36 @@
                     @switch (Model.Post.CityId)
                     {
                         case 1:
-                            <span>
+                            <span class="font-weight-normal">
                                 Đà Nẵng
                             </span>
                             break;
                         case 2:
-                            <span>
+                            <span class="font-weight-normal">
                                 Hà Nội
                             </span>
                             break;
                         case 3:
-                            <span>
+                            <span class="font-weight-normal">
                                 Tp. Hồ Chí Minh
                             </span>
                             break;
                         default:
-                            <span>
+                            <span class="font-weight-normal">
                                 Khu vực khác
                             </span>
                             break;
 
                     }
+                </h6>
+                <h6>
+                    Người đăng:
+                    <span class="font-weight-normal">
+                        <a asp-action="Details" asp-route-id="@Model.Post.UserID" asp-controller="Users">
+                            @UserManager.FindByIdAsync(Model.Post.UserID).Result.UserName
+                        </a>
+                    </span>
+
                 </h6>
             </div>
             <div class="col-6">
@@ -63,17 +72,17 @@
                     @switch (Model.Post.AnimalId)
                     {
                         case 1:
-                            <span>
+                            <span class="font-weight-normal">
                                 Mèo
                             </span>
                             break;
                         case 2:
-                            <span>
+                            <span class="font-weight-normal">
                                 Chó
                             </span>
                             break;
                         default:
-                            <span>
+                            <span class="font-weight-normal">
                                 Khác
                             </span>
                             break;
@@ -85,21 +94,25 @@
                     @switch (Model.Post.CategoryId)
                     {
                         case 1:
-                            <span>
+                            <span class="font-weight-normal">
                                 Nhận nuôi
                             </span>
                             break;
                         case 2:
-                            <span>
+                            <span class="font-weight-normal">
                                 Bệnh tật
                             </span>
                             break;
                         default:
-                            <span>
+                            <span class="font-weight-normal">
                                 Giúp đỡ
                             </span>
                             break;
                     }
+                </h6>
+                <h6>
+                    Liên hệ:
+                    <span class="font-weight-normal">@UserManager.FindByIdAsync(Model.Post.UserID).Result.PhoneNumber</span>
                 </h6>
             </div>
         </div>
@@ -112,6 +125,7 @@
 {
     <div class="row mt-5">
         <div class="col-6">
+            <h4>Bình luận</h4>
             <form method="post" action="/Posts/AddComment">
                 <textarea class="form-element" name="comment" cols="75" rows="3"> </textarea>
                 <br />
@@ -122,15 +136,24 @@
         </div>
     </div>
 }
+else
+{
+    <div class="row mt-5">
+        <div class="col-6">
+            <h4>Bình luận</h4>
+            <h5 class="font-italic font-weight-normal">(Bạn cần đăng nhập để đăng bình luận)</h5>
+        </div>
+    </div>
+}
 
-<div class="mt-5">
+<div class="mt-5 col-6">
     @foreach (var comment in Model.Comments)
     {
-    <div class="row">
-        <h6 class="mr-5">@comment.Username</h6>
-        <p class="ml-5">@comment.DateComment</p>
-    </div>
-        
+        <div class="row">
+            <h6 class="mx-5">@comment.Username</h6>
+            <p class="ml-5">@comment.DateComment</p>
+        </div>
+
 
         <div>@comment.Content</div>
         <hr />
