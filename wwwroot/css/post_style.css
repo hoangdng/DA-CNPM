@@ -3,13 +3,20 @@
     font-size:14px;
 }
 
-.searchbar {
-    border:0 0 0 0;
-}
 .searchbar-container {
     padding-left:175px;
     padding-right: 175px;
 }
+
+
+.post-db {
+    font-size: 14px;
+}
+
+.searchbar {
+    border: 0 0 0 0;
+}
+
 
 .add-post-btn-container {
     padding-right: 5px;
@@ -18,5 +25,15 @@
 
 .add-post-btn {
     color: #fff;
-    font-size:12px;
+    font-size: 12px;
+}
+
+.post-list {
+}
+
+.post-btn {
+    color: #fff;
+    font-size: 12px;
+    height: 35px;
+    width: 35px;
 }

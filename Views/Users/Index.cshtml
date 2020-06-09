@@ -56,6 +56,7 @@
             <td>
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
                 <input class="btn btn-danger" type="button" value="Block" onclick="location.href='@Url.Action("LockUser", new{ Id = item.Id })'" />
+                <input class="btn btn-danger" type="button" value="Unblock" onclick="location.href='@Url.Action("UnlockUser", new{ Id = item.Id })'" />
             </td>
         </tr>
         }

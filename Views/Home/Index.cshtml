@@ -93,5 +93,23 @@
     </div>
     <div class="col-9" id="newsfeed">
         <partial name="NewsFeedPartial" />
+        <div class="card w-100 p-3 m-0 border-0">
+            <form class="d-flex justify-content-center form-inline" name="sub_form" method="post" asp-action="Subscribe" asp-controller="Home" onsubmit="return validateForm()" required>
+                <input class="mr-2" type="text" name="sub_email" />
+                <input class="btn btn-primary" type="submit" value="Subscribe" OnClick="Subcribe_Click" />
+            </form>
+        </div>
     </div>
 </div>
+<script>
+    function validateForm() {
+        var x = document.forms["sub_form"]["sub_email"].value;
+        if (x == "" || x == null) {
+            alert("Vui lòng nhập email");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>

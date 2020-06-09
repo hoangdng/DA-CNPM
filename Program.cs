@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using PetWeb.Models;
+using PetWeb.Controllers;
 
 namespace PetWeb
 {
@@ -37,6 +38,10 @@ namespace PetWeb
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                })
+                .ConfigureServices(services =>
+                {
+                    services.AddHostedService<SubscribeService>();
                 });
     }
 }
