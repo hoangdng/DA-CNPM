@@ -24,7 +24,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse d-flex justify-content-around"  id="navbarNavAltMarkup">
+        <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNavAltMarkup">
             <div class="navbar-nav mx-5 h6">
                 <a class="nav-item nav-link @(ViewContext.RouteData.Values["Action"]!=null?ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "":"")" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ </a>
                 <a class="nav-item nav-link @(ViewContext.RouteData.Values["Action"]!=null?ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "active" : "":"")" asp-area="" asp-controller="Posts" asp-action="Create">Đăng bài </a>
@@ -32,6 +32,7 @@
                 <a class="nav-item nav-link @(ViewContext.RouteData.Values["Action"]!=null?ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active" : "":"")" asp-area="" asp-controller="Home" asp-action="About">Về chúng tôi</a>
             </div>
             <partial name="_LoginPartial" />
+
         </div>
     </nav>
     @*header*@

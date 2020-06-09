@@ -13,12 +13,11 @@ namespace PetWeb.Models
             DateComment = DateTime.Now;
         }
         public int Id { get; set; }
-        public string UserID { get; set; }
+        public string Username { get; set; }
         [DataType(DataType.Date)]
         public DateTime DateComment { get; set; }
         public string Content { get; set; }
         public int PostId { get; set; }
         public Post Post { get; set; }
-
     }
 }
