@@ -53,14 +53,17 @@ namespace PetWeb.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Posts
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (post == null)
-            {
-                return NotFound();
-            }
+            var post = await _context.Posts.FirstOrDefaultAsync(m => m.Id == id);
+            var comments = await _context.Comments.Where(comment => comment.PostId == id).ToListAsync();
 
-            return View(post);
+            CommentViewModel commentViewModel = new CommentViewModel()
+            {
+                Post = post,
+                Comments = comments
+
+            };
+
+            return View(commentViewModel);
         }
 
         // GET: Posts/Create
