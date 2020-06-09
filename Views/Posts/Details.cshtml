@@ -1,7 +1,8 @@
 ﻿
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<PetWeb.Data.CustomUser> UserManager
-@model PetWeb.Models.Post
+@inject SignInManager<PetWeb.Data.CustomUser> SignInManager
+@model PetWeb.ViewModels.CommentViewModel
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,55 +15,65 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.Post.Title)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(model => model.Post.Title)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Post.Description)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.Post.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PostedDate)
+            @Html.DisplayNameFor(model => model.Post.PostedDate)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PostedDate)
+            @Html.DisplayFor(model => model.Post.PostedDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
+            @Html.DisplayNameFor(model => model.Post.Status)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Status)
+            @Html.DisplayFor(model => model.Post.Status)
         </dd>
         <dt class="col-sm-2">
             Loại động vật
         </dt>
         <dd class="col-sm-10">
-            @switch (Model.AnimalId)
+            @switch (Model.Post.AnimalId)
             {
                 case 4:
-            <p>Mèo</p>
+                    <p>Mèo</p>
                     break;
                 case 5:
-            <p> Chó </p>
+                    <p> Chó </p>
                     break;
                 default:
-            <p>Khác</p>
+                    <p>Khác</p>
                     break;
             }
         </dd>
     </dl>
 </div>
-<div class="row">
-    <form method="post" action="/Posts/AddComment">
-        <input class="form-element" name="comment" type="text" />
-        <label for="comment">Comment</label>
-        <br />
-        <input class="form-element" value=@User.Identity.Name name="userId" type="hidden" />
-        <input type="hidden" value=@Model.Id name="postId"/>
-        <button type="submit">Đăng</button>
-    </form>
+<div class="">
+    @foreach(var comment in Model.Comments)
+    {
+        <div>@comment.Content</div>
+    }
 </div>
+@if (SignInManager.IsSignedIn(User))
+{ 
+    <div class="row">
+        <form method="post" action="/Posts/AddComment">
+            <input class="form-element" name="comment" type="text" />
+            <label for="comment">Comment</label>
+            <br />
+            <input class="form-element" value=@User.Identity.Name name="userId" type="hidden" />
+            <input type="hidden" value=@Model.Post.Id name="postId" />
+            <button type="submit">Đăng</button>
+        </form>
+    </div>
+}
+
