@@ -82,6 +82,13 @@ namespace PetWeb.Controllers
             return View("Index", _userManager.Users.ToList());
         }
 
+        public async Task<ActionResult> UnlockUser(string id)
+        {
+            var userToLock = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == id);
+            await _userManager.SetLockoutEnabledAsync(userToLock, false);
+            await _userManager.SetLockoutEndDateAsync(userToLock, DateTime.Now);
+            return View("Index", _userManager.Users.ToList());
+        }
         // GET: Users/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
