@@ -87,20 +87,23 @@
     <h1 class="display-1 text-center mb-5" style="font-family: 'Pangolin', cursive;">Bảng tin cứu trợ</h1>
 </div>
 
+
+
 <div class="row">
     <div class="col-3 filter pl-5">
         <partial name="FilterPartial" />
+
+        <h4 class="mt-4 mb-2" style="font-family: 'Pangolin'">Đăng ký nhận thông tin:</h4>
+        <form class="d-flex justify-content-between form-inline" name="sub_form" method="post" asp-action="Subscribe" asp-controller="Home" onsubmit="return validateForm()" required>
+            <input type="text" name="sub_email" placeholder="Nhập email của bạn..." />
+            <input class="btn btn-primary" type="submit" value="Subscribe" OnClick="Subcribe_Click" />
+        </form>
     </div>
     <div class="col-9" id="newsfeed">
         <partial name="NewsFeedPartial" />
-        <div class="card w-100 p-3 m-0 border-0">
-            <form class="d-flex justify-content-center form-inline" name="sub_form" method="post" asp-action="Subscribe" asp-controller="Home" onsubmit="return validateForm()" required>
-                <input class="mr-2" type="text" name="sub_email" />
-                <input class="btn btn-primary" type="submit" value="Subscribe" OnClick="Subcribe_Click" />
-            </form>
-        </div>
     </div>
 </div>
+
 <script>
     function validateForm() {
         var x = document.forms["sub_form"]["sub_email"].value;

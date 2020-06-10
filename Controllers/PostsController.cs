@@ -208,8 +208,7 @@ namespace PetWeb.Controllers
             return _context.Posts.Any(e => e.Id == id);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddComment(IFormCollection collection)
+        public PartialViewResult AddComment(IFormCollection collection)
         {
             int postId = Convert.ToInt32(collection["postId"][0]);
             var currentPost = _context.Posts.Where(p => p.Id == postId).FirstOrDefault();
@@ -222,8 +221,17 @@ namespace PetWeb.Controllers
                 Post = currentPost
             };
             _context.Add(newComment);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Details", new { id = postId });
+            _context.SaveChanges();
+
+            CommentViewModel commentViewModel = new CommentViewModel()
+            {
+                Post = currentPost,
+                Comments = currentPost.Comments
+
+            };
+
+            return PartialView("CommentPartial", commentViewModel);
+            //return RedirectToAction("Details", new { id = postId });
         }
     }
 }
