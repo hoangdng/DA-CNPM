@@ -18,7 +18,18 @@
                             data-user="@UserManager.Users.ToList().Find(User => User.Id == item.UserID).PhoneNumber" data-date="@item.PostedDate">
                         Xem chi tiết
                     </button>*@
-                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id" asp-controller="Posts">Xem chi tiết</a>
+                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id" asp-controller="Posts">Xem chi tiết</a>  
+                <div class="dropdown">
+                    <button class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    i
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <form method="post" asp-controller="Users" asp-action="SavePost">
+                            <input type="hidden" value=@item.Id name="postId" />
+                            <button type="submit" class="dropdown-item">Save Post</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
