@@ -33,6 +33,7 @@ namespace PetWeb.Controllers
         }
 
         // GET: Posts
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Index(string postedDate)
         {
             return View(await _context.Posts.ToListAsync());

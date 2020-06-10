@@ -73,6 +73,9 @@ namespace PetWeb.Controllers
             if (area != "all")
                 filteredPosts = filteredPosts.Where(p => p.City.Name == area);
 
+            var search = collection.ContainsKey("searchcontent").ToString() == "" ? "all" : collection["searchcontent"][0];
+            if (search != "all")
+                filteredPosts = filteredPosts.Where(p => p.Title.Contains(search));
 
             return PartialView("NewsFeedPartial", filteredPosts.ToList());
         
