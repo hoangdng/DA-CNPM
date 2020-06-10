@@ -126,12 +126,12 @@
     <div class="row mt-5">
         <div class="col-6">
             <h4>Bình luận</h4>
-            <form method="post" action="/Posts/AddComment">
-                <textarea class="form-element" name="comment" cols="75" rows="3"> </textarea>
+            <form method="post" action="/Posts/AddComment" id="form-comment">
+                <textarea class="form-element" name="comment" cols="75" rows="3" id="textarea-comment"> </textarea>
                 <br />
                 <input class="form-element" value=@User.Identity.Name name="userId" type="hidden" />
                 <input type="hidden" value=@Model.Post.Id name="postId" />
-                <button type="submit" class="btn btn-primary float-right">Đăng</button>
+                <button type="submit" class="btn btn-info float-right w-25">Đăng</button>
             </form>
         </div>
     </div>
@@ -146,16 +146,6 @@ else
     </div>
 }
 
-<div class="mt-5 col-6">
-    @foreach (var comment in Model.Comments)
-    {
-        <div class="row">
-            <h6 class="mx-5">@comment.Username</h6>
-            <p class="ml-5">@comment.DateComment</p>
-        </div>
-
-
-        <div>@comment.Content</div>
-        <hr />
-    }
+<div class="mt-5 col-6" id="comments-box">
+    <partial name="CommentPartial" />
 </div>

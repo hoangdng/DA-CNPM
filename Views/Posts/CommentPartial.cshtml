@@ -1,0 +1,15 @@
+﻿@model PetWeb.ViewModels.CommentViewModel
+<div id="all-comments">
+    @foreach (var comment in Model.Comments.Reverse())
+    {
+
+        <div class="row">
+            <h6 class="mx-5">@comment.Username</h6>
+            <p class="ml-5">@comment.DateComment</p>
+        </div>
+
+
+        <div class="mb-5">@comment.Content</div>
+        <hr />
+    }
+</div>

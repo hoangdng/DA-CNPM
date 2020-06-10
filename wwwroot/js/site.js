@@ -39,4 +39,5 @@ $('#create-form').submit(function () {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
-})
+});
+
