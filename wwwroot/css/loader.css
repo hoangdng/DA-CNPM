@@ -2,16 +2,6 @@
     margin: 0;
     padding: 0;
 }
-
-body {
-    overflow: hidden;
-}
-
-.content {
-    width: 1170px;
-    margin: auto;
-    margin-top: 30px;
-}
 /*dùng ảnh gif*/
 .load {
     width: 100%;
