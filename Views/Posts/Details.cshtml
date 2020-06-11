@@ -151,9 +151,9 @@
         <div class="col-6">
             <h4>Bình luận</h4>
             <form method="post" action="/Posts/AddComment" id="form-comment">
-                <textarea class="form-element" name="comment" cols="75" rows="3" id="textarea-comment"> </textarea>
+                <textarea @*class="form-element"*@ name="comment" cols="75" rows="3" id="textarea-comment"> </textarea>
                 <br />
-                <input class="form-element" value=@User.Identity.Name name="userId" type="hidden" />
+                <input @*class="form-element"*@ value=@User.Identity.Name name="userId" type="hidden" />
                 <input type="hidden" value=@Model.Post.Id name="postId" />
                 <button type="submit" class="btn btn-info float-right w-25">Đăng</button>
             </form>
