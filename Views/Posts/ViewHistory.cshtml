@@ -15,6 +15,9 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.ImageURL)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.PostedDate)
             </th>
             <th>
@@ -29,6 +32,9 @@
             <tr>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
+                </td>
+                <td>
+                    <img src="~/Images/@item.ImageURL" class="rounded-circle" width="40" height="40" asp-append-version="true" />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PostedDate)
