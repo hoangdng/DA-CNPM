@@ -8,7 +8,7 @@
     {
         <div class="card border-info  mb-3">
             <img class="card-img-top card-thumbnail" src="~/images/@item.ImageURL" alt="Card image cap">
-            <div class="card-body" style="height:100px;">
+            <div class="card-body" style="height:130px;">
                 <h5 class="card-title">@item.Title</h5>
                 <p>
                     <span><strong>Trạng thái:</strong></span>
@@ -27,6 +27,30 @@
                         case "Solved":
                             <span class="font-weight-normal">
                                 Đã xong
+                            </span>
+                            break;
+                        default:
+                            break;
+                    }
+                </p>
+                <p>
+                    <span><strong>Loại cứu trợ:</strong></span>
+                    @item.CategoryId
+                    @switch (@item.CategoryId)
+                    {
+                        case 1:
+                            <span class="font-weight-normal">
+                                Nhận nuôi
+                            </span>
+                            break;
+                        case 2:
+                            <span class="font-weight-normal">
+                                Bệnh tật
+                            </span>
+                            break;
+                        case 3:
+                            <span class="font-weight-normal">
+                                Giúp đỡ
                             </span>
                             break;
                         default:

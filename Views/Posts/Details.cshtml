@@ -8,10 +8,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
-
-
 <div class="row mt-5">
     <div class="col-6 shadow">
         <img src="~/Images/@Model.Post.ImageURL" alt="Picture" class="img-fluid" />
@@ -28,32 +24,7 @@
                     <span class="font-weight-normal"> @Model.Post.PostedDate.ToString("dd/MM/yyyy")</span>
                 </h6>
                 <h6>
-                    Địa điểm:
-
-                    @switch (Model.Post.CityId)
-                    {
-                        case 1:
-                            <span class="font-weight-normal">
-                                Đà Nẵng
-                            </span>
-                            break;
-                        case 2:
-                            <span class="font-weight-normal">
-                                Hà Nội
-                            </span>
-                            break;
-                        case 3:
-                            <span class="font-weight-normal">
-                                Tp. Hồ Chí Minh
-                            </span>
-                            break;
-                        default:
-                            <span class="font-weight-normal">
-                                Khu vực khác
-                            </span>
-                            break;
-
-                    }
+                    Địa điểm: <span class="font-weight-normal">@Model.Post.City.Description</span>
                 </h6>
                 <h6>
                     Người đăng:
@@ -90,48 +61,10 @@
             </div>
             <div class="col-6">
                 <h6>
-                    Động vật:
-
-                    @switch (Model.Post.AnimalId)
-                    {
-                        case 1:
-                            <span class="font-weight-normal">
-                                Mèo
-                            </span>
-                            break;
-                        case 2:
-                            <span class="font-weight-normal">
-                                Chó
-                            </span>
-                            break;
-                        default:
-                            <span class="font-weight-normal">
-                                Khác
-                            </span>
-                            break;
-                    }
+                    Động vật: <span class="font-weight-normal">@Model.Post.Animal.Description</span>
                 </h6>
                 <h6>
-                    Loại cứu trợ:
-
-                    @switch (Model.Post.CategoryId)
-                    {
-                        case 1:
-                            <span class="font-weight-normal">
-                                Nhận nuôi
-                            </span>
-                            break;
-                        case 2:
-                            <span class="font-weight-normal">
-                                Bệnh tật
-                            </span>
-                            break;
-                        default:
-                            <span class="font-weight-normal">
-                                Giúp đỡ
-                            </span>
-                            break;
-                    }
+                    Loại cứu trợ: <span class="font-weight-normal">@Model.Post.Category.Description</span>
                 </h6>
                 <h6>
                     Liên hệ:
@@ -164,7 +97,7 @@ else
     <div class="row mt-5">
         <div class="col-6">
             <h4>Bình luận</h4>
-            <h6 class="font-italic font-weight-normal">(Bạn cần <span><a asp-area="Identity" asp-page="/Account/Login">đăng nhập</a></span> để đăng bình luận)</h6>
+            <h6 class="font-italic font-weight-normal">(Bạn cần <span><a asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@Url.Action("Details", "Posts", new { id = Model.Post.Id })">đăng nhập</a></span> để đăng bình luận)</h6>
         </div>
     </div>
 }
