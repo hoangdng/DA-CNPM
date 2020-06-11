@@ -64,6 +64,30 @@
                     </span>
 
                 </h6>
+                <h6>
+                    Trạng thái:
+
+                    @switch (Model.Post.Status.ToString())
+                    {
+                        case "Available":
+                            <span class="font-weight-normal">
+                                Chưa có người giúp
+                            </span>
+                            break;
+                        case "OnHold":
+                            <span class="font-weight-normal">
+                                Đang có người giúp
+                            </span>
+                            break;
+                        case "Solved":
+                            <span class="font-weight-normal">
+                                Đã xong
+                            </span>
+                            break;
+                        default:
+                            break;
+                    }
+                </h6>
             </div>
             <div class="col-6">
                 <h6>
@@ -127,9 +151,9 @@
         <div class="col-6">
             <h4>Bình luận</h4>
             <form method="post" action="/Posts/AddComment" id="form-comment">
-                <textarea class="form-element" name="comment" cols="75" rows="3" id="textarea-comment"> </textarea>
+                <textarea @*class="form-element"*@ name="comment" cols="75" rows="3" id="textarea-comment"> </textarea>
                 <br />
-                <input class="form-element" value=@User.Identity.Name name="userId" type="hidden" />
+                <input @*class="form-element"*@ value=@User.Identity.Name name="userId" type="hidden" />
                 <input type="hidden" value=@Model.Post.Id name="postId" />
                 <button type="submit" class="btn btn-info float-right w-25">Đăng</button>
             </form>
@@ -141,7 +165,7 @@ else
     <div class="row mt-5">
         <div class="col-6">
             <h4>Bình luận</h4>
-            <h5 class="font-italic font-weight-normal">(Bạn cần đăng nhập để đăng bình luận)</h5>
+            <h6 class="font-italic font-weight-normal">(Bạn cần <span><a asp-area="Identity" asp-page="/Account/Login">đăng nhập</a></span> để đăng bình luận)</h6>
         </div>
     </div>
 }

@@ -18,6 +18,7 @@ namespace PetWeb.Models
         public string Title { get; set; }
         [Display(Name = "Mô tả")]
         public string Description { get; set; }
+        [Display(Name = "Hình ảnh")]
         public string ImageURL { get; set; }
         [DataType(DataType.Date)]
         [Display(Name = "Ngày đăng")]

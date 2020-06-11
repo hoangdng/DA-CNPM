@@ -15,6 +15,9 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.ImageURL)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.PostedDate)
             </th>
             <th>
@@ -31,10 +34,32 @@
                     <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
                 </td>
                 <td>
+                    <img src="~/Images/@item.ImageURL" class="rounded-circle" width="40" height="40" asp-append-version="true" />
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.PostedDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                    @switch (item.Status.ToString())
+                    {
+                        case "Available":
+                            <span class="font-weight-normal">
+                                Chưa có người giúp
+                            </span>
+                            break;
+                        case "OnHold":
+                            <span class="font-weight-normal">
+                                Đang có người giúp
+                            </span>
+                            break;
+                        case "Solved":
+                            <span class="font-weight-normal">
+                                Đã xong
+                            </span>
+                            break;
+                        default:
+                            break;
+                    }
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Chỉnh sửa</a> |

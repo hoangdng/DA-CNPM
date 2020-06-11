@@ -16,9 +16,13 @@
     <link rel="stylesheet" href="~/css/toastr.min.css" />
     <link rel="stylesheet" href="~/css/post_style.css" />
     <link rel="stylesheet" href="~/css/dashboard.css" />
+    <link rel="stylesheet" href="~/css/loader.css" />
 </head>
 <body>
     @*header*@
+    <div class="load loader">
+        <img src=@Url.Content("~/images/icons/loader2.gif")>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-white px-5" id="headerFixed">
         <a class="navbar-brand mx-4" asp-area="" asp-controller="Home" asp-action="Index">
             <img src=@Url.Content("~/images/icons/logo.png") alt="Pet Club Logo">
@@ -56,6 +60,7 @@
     <script src="~/js/newsfeed.js" type="text/javascript"></script>
     <script src="~/js/toastr.js" type="text/javascript"></script>
     <script src="~/js/comment.js" type="text/javascript"></script>
+    <script src="~/js/loader.js" type="text/javascript"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
