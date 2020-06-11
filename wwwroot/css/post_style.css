@@ -11,9 +11,9 @@
     padding-right: 175px;
 }
 
-.add-post-btn-container {
-    padding-right: 5px;
-    border-right: 1px solid;
+.divider-right {
+    border: 1px solid;
+    height: 35px;
 }
 
 .post-btn {
@@ -21,8 +21,13 @@
     font-size:12px;
     height:35px;
     width:35px;
+    
 }
 
 .post-list {
     
+}
+
+.btn-danger {
+    font-size: 14px;
 }
