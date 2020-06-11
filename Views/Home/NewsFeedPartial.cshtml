@@ -10,6 +10,29 @@
             <img class="card-img-top card-thumbnail" src="~/images/@item.ImageURL" alt="Card image cap">
             <div class="card-body" style="height:100px;">
                 <h5 class="card-title">@item.Title</h5>
+                <p>
+                    <span><strong>Trạng thái:</strong></span>
+                    @switch (@item.Status.ToString())
+                    {
+                        case "Available":
+                            <span class="font-weight-normal">
+                                Chưa có người giúp
+                            </span>
+                            break;
+                        case "OnHold":
+                            <span class="font-weight-normal">
+                                Đang có người giúp
+                            </span>
+                            break;
+                        case "Solved":
+                            <span class="font-weight-normal">
+                                Đã xong
+                            </span>
+                            break;
+                        default:
+                            break;
+                    }
+                </p>
             </div>
             <div class="card-footer d-flex justify-content-between">
                 <span>@item.PostedDate.ToString("dd MMM yyyy")</span>

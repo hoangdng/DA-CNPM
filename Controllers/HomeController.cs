@@ -39,7 +39,7 @@ namespace PetWeb.Controllers
         }
 
         public PartialViewResult FilterIndex(IFormCollection collection)
-        {
+       {
             var filteredPosts = _context.Posts.Select(p => p);
             //Filtered by posted date
             var duration = collection.ContainsKey("duration") == false ? "all" : collection["duration"][0];
@@ -73,7 +73,11 @@ namespace PetWeb.Controllers
             if (area != "all")
                 filteredPosts = filteredPosts.Where(p => p.City.Name == area);
 
-            var search = collection.ContainsKey("searchcontent").ToString() == "" ? "all" : collection["searchcontent"][0];
+            //var search = collection.ContainsKey("searchcontent").ToString() == "" ? "all" : collection["searchcontent"][0];
+            //if (search != "all")
+            //    filteredPosts = filteredPosts.Where(p => p.Title.Contains(search));
+
+            var search = collection["searchcontent"].ToString() == "" ? "all" : collection["searchcontent"][0];
             if (search != "all")
                 filteredPosts = filteredPosts.Where(p => p.Title.Contains(search));
 
