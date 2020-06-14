@@ -31,15 +31,18 @@ namespace PetWeb.Models
                 context.Animals.AddRange(
                     new Animal
                     {
-                        Name = "cat"
+                        Name = "cat",
+                        Description = "Mèo"
                     },
                     new Animal
                     {
-                        Name = "dog"
+                        Name = "dog",
+                        Description = "Chó"
                     },
                     new Animal
                     {
-                        Name = "others"
+                        Name = "others",
+                        Description = "Khác"
                     }
                 );
                 context.SaveChanges();
@@ -47,15 +50,18 @@ namespace PetWeb.Models
                 context.Categories.AddRange(
                     new Category
                     {
-                        Name = "adopt"
+                        Name = "adopt",
+                        Description = "Nhận nuôi"
                     },
                     new Category
                     {
-                        Name = "disease"
+                        Name = "disease",
+                        Description = "Bệnh tât"
                     },
                     new Category
                     {
-                        Name = "help"
+                        Name = "help",
+                        Description = "Giúp đỡ"
                     }
                 );
                 context.SaveChanges();
@@ -63,19 +69,23 @@ namespace PetWeb.Models
                 context.Cities.AddRange(
                     new City
                     {
-                        Name = "danang"
+                        Name = "danang",
+                        Description = "Đà Nẵng"
                     },
                     new City
                     {
-                        Name = "hanoi"
+                        Name = "hanoi",
+                        Description = "Hà Nội"
                     },
                     new City
                     {
-                        Name = "tphcm"
+                        Name = "tphcm",
+                        Description = "Tp.Hồ Chí Minh"
                     },
                     new City
                     {
-                        Name = "others"
+                        Name = "others",
+                        Description = "Khu vực khác"
                     }
                 );
                 context.SaveChanges();

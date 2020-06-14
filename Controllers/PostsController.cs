@@ -55,6 +55,12 @@ namespace PetWeb.Controllers
             }
 
             var post = await _context.Posts.FirstOrDefaultAsync(m => m.Id == id);
+            var animalType = _context.Animals.Where(animal => animal.AnimalId == post.AnimalId).FirstOrDefault();
+            var categoryType = _context.Categories.Where(category => category.CategoryId == post.CategoryId).FirstOrDefault();
+            var city = _context.Cities.Where(c => c.CityId == post.CityId).FirstOrDefault();
+            post.City = city;
+            post.Animal = animalType;
+            post.Category = categoryType;
             var comments = await _context.Comments.Where(comment => comment.PostId == id).ToListAsync();
 
             CommentViewModel commentViewModel = new CommentViewModel()
@@ -84,6 +90,9 @@ namespace PetWeb.Controllers
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             vm.UserID = currentUserId;
             string stringFileName = UploadFile(vm);
+            var animalType = _context.Animals.Where(animal => animal.AnimalId == vm.AnimalId).FirstOrDefault();
+            var categoryType = _context.Categories.Where(category => category.CategoryId == vm.CategoryId).FirstOrDefault();
+            var city = _context.Cities.Where(c => c.CityId == vm.CityId).FirstOrDefault();
             var post = new Post()
             {
                 Title = vm.Title,
@@ -92,10 +101,14 @@ namespace PetWeb.Controllers
                 Status = vm.Status,
                 UserID = vm.UserID,
                 AnimalId = vm.AnimalId,
+                Animal = animalType,
                 CategoryId = vm.CategoryId,
+                Category = categoryType,
+                City = city,
                 CityId = vm.CityId,
                 ImageURL = stringFileName
             };
+
             if (ModelState.IsValid)
             {
                 _context.Add(post);
@@ -154,6 +167,12 @@ namespace PetWeb.Controllers
                 try
                 {
                     var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    var animalType = _context.Animals.Where(animal => animal.AnimalId == post.AnimalId).FirstOrDefault();
+                    var categoryType = _context.Categories.Where(category => category.CategoryId == post.CategoryId).FirstOrDefault();
+                    var city = _context.Cities.Where(c => c.CityId == post.CityId).FirstOrDefault();
+                    post.City = city;
+                    post.Animal = animalType;
+                    post.Category = categoryType;
                     post.UserID = currentUserId;
                     _context.Update(post);
                     await _context.SaveChangesAsync();

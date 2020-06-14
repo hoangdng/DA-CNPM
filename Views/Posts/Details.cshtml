@@ -29,31 +29,33 @@
                 </h6>
                 <h6>
                     Địa điểm:
+                    <span class="font-weight-normal">
+                        @Model.Post.City.Description
+                    </span>
+                    @*@switch (Model.Post.CityId)
+                        {
+                            case 1:
+                                <span class="font-weight-normal">
+                                    Đà Nẵng
+                                </span>
+                                break;
+                            case 2:
+                                <span class="font-weight-normal">
+                                    Hà Nội
+                                </span>
+                                break;
+                            case 3:
+                                <span class="font-weight-normal">
+                                    Tp. Hồ Chí Minh
+                                </span>
+                                break;
+                            default:
+                                <span class="font-weight-normal">
+                                    Khu vực khác
+                                </span>
+                                break;
 
-                    @switch (Model.Post.CityId)
-                    {
-                        case 1:
-                            <span class="font-weight-normal">
-                                Đà Nẵng
-                            </span>
-                            break;
-                        case 2:
-                            <span class="font-weight-normal">
-                                Hà Nội
-                            </span>
-                            break;
-                        case 3:
-                            <span class="font-weight-normal">
-                                Tp. Hồ Chí Minh
-                            </span>
-                            break;
-                        default:
-                            <span class="font-weight-normal">
-                                Khu vực khác
-                            </span>
-                            break;
-
-                    }
+                        }*@
                 </h6>
                 <h6>
                     Người đăng:
@@ -92,47 +94,57 @@
             <div class="col-6">
                 <h6>
                     Động vật:
-
-                    @switch (Model.Post.AnimalId)
-                    {
-                        case 1:
-                            <span class="font-weight-normal">
-                                Mèo
-                            </span>
-                            break;
-                        case 2:
-                            <span class="font-weight-normal">
-                                Chó
-                            </span>
-                            break;
-                        default:
-                            <span class="font-weight-normal">
-                                Khác
-                            </span>
-                            break;
-                    }
+                    <span class="font-weight-normal">
+                        @Model.Post.Animal.Description
+                    </span>
+                    @*@switch (Model.Post.AnimalId)
+                        {
+                            case 1:
+                                <span class="font-weight-normal">
+                                    Mèo
+                                </span>
+                                break;
+                            case 2:
+                                <span class="font-weight-normal">
+                                    Chó
+                                </span>
+                                break;
+                            default:
+                                <span class="font-weight-normal">
+                                    Khác
+                                </span>
+                                break;
+                        }*@
                 </h6>
                 <h6>
                     Loại cứu trợ:
-
-                    @switch (Model.Post.CategoryId)
-                    {
-                        case 1:
-                            <span class="font-weight-normal">
-                                Nhận nuôi
-                            </span>
-                            break;
-                        case 2:
-                            <span class="font-weight-normal">
-                                Bệnh tật
-                            </span>
-                            break;
-                        default:
-                            <span class="font-weight-normal">
-                                Giúp đỡ
-                            </span>
-                            break;
-                    }
+                    <span class="font-weight-normal">
+                        @Model.Post.Category.Description
+                    </span>
+                    @*@switch (Model.Post.CategoryId)
+                        {
+                            case 1:
+                                <span class="font-weight-normal">
+                                    Nhận nuôi
+                                </span>
+                                break;
+                            case 2:
+                                <span class="font-weight-normal">
+                                    Bệnh tật
+                                </span>
+                                break;
+                            default:
+                                <span class="font-weight-normal">
+                                    Giúp đỡ
+                                </span>
+                                break;
+                        }*@
+                    <span class="font-weight-normal">
+                    </span>
+                    <span class="font-weight-normal">
+                    </span>
+                    <span class="font-weight-normal">
+                    </span>
                 </h6>
                 <h6>
                     Liên hệ:
@@ -151,9 +163,9 @@
         <div class="col-6">
             <h4>Bình luận</h4>
             <form method="post" action="/Posts/AddComment" id="form-comment">
-                <textarea @*class="form-element"*@ name="comment" cols="75" rows="3" id="textarea-comment"> </textarea>
+                <textarea @*class="form-element" *@ name="comment" cols="75" rows="3" id="textarea-comment"> </textarea>
                 <br />
-                <input @*class="form-element"*@ value=@User.Identity.Name name="userId" type="hidden" />
+                <input @*class="form-element" *@ value=@User.Identity.Name name="userId" type="hidden" />
                 <input type="hidden" value=@Model.Post.Id name="postId" />
                 <button type="submit" class="btn btn-info float-right w-25">Đăng</button>
             </form>

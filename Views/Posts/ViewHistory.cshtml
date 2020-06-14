@@ -6,9 +6,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Các bài đã đăng</h1>
+<h1 style="font-family: 'Pangolin', cursive;">Các bài đã đăng</h1>
 
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -34,7 +34,7 @@
                     <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
                 </td>
                 <td>
-                    <img src="~/Images/@item.ImageURL" class="rounded-circle" width="40" height="40" asp-append-version="true" />
+                    <img src="~/Images/@item.ImageURL" class="rounded-circle zoom-img" width="40" height="40" asp-append-version="true" />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PostedDate)
