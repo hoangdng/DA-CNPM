@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PetWeb.Models.Post>
+﻿@model IEnumerable<SemanticWeb.Models.Post>
 
 @{
     ViewData["Title"] = "Index";
@@ -17,10 +17,10 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PostedDate)
+                @Html.DisplayNameFor(model => model.DatePosted)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                @Html.DisplayNameFor(model => model.Area)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ImageURL)
@@ -36,10 +36,10 @@
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PostedDate)
+                    @Html.DisplayFor(modelItem => item.DatePosted)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                    @Html.DisplayFor(modelItem => item.Area.Description)
                 </td>
                 <td>
                     <img src="~/Images/@item.ImageURL" class="rounded-circle" width="40" height="40" asp-append-version="true" />

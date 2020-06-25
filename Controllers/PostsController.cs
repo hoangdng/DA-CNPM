@@ -11,13 +11,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PetWeb.Data;
-using PetWeb.Models;
-using PetWeb.ViewModels;
+using SemanticWeb.Data;
+using SemanticWeb.Models;
+using SemanticWeb.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
-namespace PetWeb.Controllers
+namespace SemanticWeb.Controllers
 {
     public class PostsController : Controller
     {
@@ -79,7 +79,7 @@ namespace PetWeb.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Description,AnimalId,CategoryId,CityId,ImageURL")] PostViewModel vm)
+        public async Task<IActionResult> Create([Bind("Title,Content,AreaId,ImageURL")] PostViewModel vm)
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             vm.UserID = currentUserId;
@@ -87,13 +87,10 @@ namespace PetWeb.Controllers
             var post = new Post()
             {
                 Title = vm.Title,
-                Description = vm.Description,
-                PostedDate = vm.PostedDate,
-                Status = vm.Status,
+                Content = vm.Content,
+                DatePosted = vm.DatePosted,
                 UserID = vm.UserID,
-                AnimalId = vm.AnimalId,
-                CategoryId = vm.CategoryId,
-                CityId = vm.CityId,
+                AreaId = vm.AreaId,
                 ImageURL = stringFileName
             };
             if (ModelState.IsValid)
@@ -142,7 +139,7 @@ namespace PetWeb.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,AnimalId,CategoryId,CityId,Status,ImageURL")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,AreaId,ImageURL")] Post post)
         {
             if (id != post.Id)
             {

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using PetWeb.Data;
+using SemanticWeb.Data;
 
-namespace PetWeb.Areas.Identity.Pages.Account.Manage
+namespace SemanticWeb.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {

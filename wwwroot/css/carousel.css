@@ -45,7 +45,7 @@
 #secondSlide > div {
     position: absolute;
     width: 30%;
-    margin: 30px 0 0 800px;
+    margin: 150px 0 0 800px;
 }
 
     #secondSlide > div > h1 {
@@ -77,7 +77,7 @@
 #thirdSlide > div {
     position: absolute;
     width: 35%;
-    margin: 150px 0 0 50px;
+    margin: 150px 0 0 150px;
 }
 
     #thirdSlide > div > h1 {
@@ -94,9 +94,9 @@
     #thirdSlide > div > a {
         padding: 20px;
         border-radius: 50px;
-        background-color: #35BCEB;
+        background-color: white;
         text-decoration: none;
-        color: white;
+        color: #35BCEB;
         font-size: 1.1em;
         font-weight: 500;
     }
@@ -109,7 +109,7 @@
 #fourthSlide > div {
     position: absolute;
     width: 50%;
-    margin: 350px 0 0 40px;
+    margin: 50px 0 0 60px;
 }
 
     #fourthSlide > div > h1 {
@@ -126,9 +126,9 @@
     #fourthSlide > div > a {
         padding: 20px;
         border-radius: 50px;
-        background-color: #35BCEB;
+        background-color: white;
         text-decoration: none;
-        color: white;
+        color: #35BCEB;
         font-size: 1.1em;
         font-weight: 500;
     }

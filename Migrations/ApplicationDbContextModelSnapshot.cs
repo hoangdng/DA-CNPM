@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PetWeb.Data;
+using SemanticWeb.Data;
 
-namespace PetWeb.Data.Migrations
+namespace SemanticWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200609093453_ChangePropertyUserIdToUsernameInCommentModel")]
-    partial class ChangePropertyUserIdToUsernameInCommentModel
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -227,49 +225,22 @@ namespace PetWeb.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("PetWeb.Models.Animal", b =>
+            modelBuilder.Entity("PetWeb.Models.Area", b =>
                 {
-                    b.Property<int>("AnimalId")
+                    b.Property<int>("AreaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AnimalId");
-
-                    b.ToTable("Animals");
-                });
-
-            modelBuilder.Entity("PetWeb.Models.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("AreaId");
 
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("PetWeb.Models.City", b =>
-                {
-                    b.Property<int>("CityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CityId");
-
-                    b.ToTable("Cities");
+                    b.ToTable("Areas");
                 });
 
             modelBuilder.Entity("PetWeb.Models.Comment", b =>
@@ -282,7 +253,7 @@ namespace PetWeb.Data.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateComment")
+                    b.Property<DateTime>("DateCommented")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("PostId")
@@ -305,26 +276,17 @@ namespace PetWeb.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AnimalId")
+                    b.Property<int>("AreaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CityId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
+                    b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DatePosted")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ImageURL")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("PostedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -334,13 +296,24 @@ namespace PetWeb.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AnimalId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("CityId");
+                    b.HasIndex("AreaId");
 
                     b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("PetWeb.Models.Subscriber", b =>
+                {
+                    b.Property<int>("SubscriberID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SubscriberID");
+
+                    b.ToTable("Subscribers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -405,21 +378,9 @@ namespace PetWeb.Data.Migrations
 
             modelBuilder.Entity("PetWeb.Models.Post", b =>
                 {
-                    b.HasOne("PetWeb.Models.Animal", "Animal")
+                    b.HasOne("PetWeb.Models.Area", "Area")
                         .WithMany("Posts")
-                        .HasForeignKey("AnimalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PetWeb.Models.Category", "Category")
-                        .WithMany("Posts")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PetWeb.Models.City", "City")
-                        .WithMany("Posts")
-                        .HasForeignKey("CityId")
+                        .HasForeignKey("AreaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

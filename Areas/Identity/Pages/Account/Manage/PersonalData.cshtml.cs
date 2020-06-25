@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using PetWeb.Data;
+using SemanticWeb.Data;
 
-namespace PetWeb.Areas.Identity.Pages.Account.Manage
+namespace SemanticWeb.Areas.Identity.Pages.Account.Manage
 {
     public class PersonalDataModel : PageModel
     {

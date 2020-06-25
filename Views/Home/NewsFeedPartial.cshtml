@@ -10,54 +10,10 @@
             <img class="card-img-top card-thumbnail" src="~/images/@item.ImageURL" alt="Card image cap">
             <div class="card-body" style="height:160px;">
                 <h5 class="card-title d-flex align-items-center" style="height:50px;">@item.Title</h5>
-                <p>
-                    <span><strong>Trạng thái:</strong></span>
-                    @switch (@item.Status.ToString())
-                    {
-                        case "Available":
-                            <span class="font-weight-normal">
-                                Chưa có người giúp
-                            </span>
-                            break;
-                        case "OnHold":
-                            <span class="font-weight-normal">
-                                Đang có người giúp
-                            </span>
-                            break;
-                        case "Solved":
-                            <span class="font-weight-normal">
-                                Đã xong
-                            </span>
-                            break;
-                        default:
-                            break;
-                    }
-                </p>
-                <p>
-                    <span><strong>Loại cứu trợ:</strong></span>
-                    @switch (@item.CategoryId)
-                    {
-                        case 1:
-                            <span class="font-weight-normal">
-                                Nhận nuôi
-                            </span>
-                            break;
-                        case 2:
-                            <span class="font-weight-normal">
-                                Bệnh tật
-                            </span>
-                            break;
-                        default:
-                            <span class="font-weight-normal">
-                                Giúp đỡ
-                            </span>
-                            break;
-                    }
-                </p>
             </div>
 
             <div class="card-footer d-flex justify-content-between">
-                <span>@item.PostedDate.ToString("dd MMM yyyy")</span>
+                <span>@item.DatePosted.ToString("dd MMM yyyy")</span>
                 @*<button class="btn btn-outline-info" type="button" data-toggle="modal" data-target="#myModal"
                             data-title="@item.Title" data-description="@item.Description" data-image="@item.ImageURL"
                             data-user="@UserManager.Users.ToList().Find(User => User.Id == item.UserID).PhoneNumber" data-date="@item.PostedDate">

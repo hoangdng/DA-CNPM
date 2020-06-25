@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PetWeb.Data;
+using SemanticWeb.Data;
 using System;
 using System.Linq;
 
 
-namespace PetWeb.Models
+namespace SemanticWeb.Models
 {
     public static class SeedData
     {
@@ -15,67 +15,41 @@ namespace PetWeb.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<ApplicationDbContext>>()))
             {
-                if (context.Animals.Any())
-                {
-                    return;
-                }
-                if (context.Categories.Any())
-                {
-                    return;
-                }
-                if (context.Cities.Any())
+                if (context.Areas.Any())
                 {
                     return;
                 }
 
-                context.Animals.AddRange(
-                    new Animal
+                context.Areas.AddRange(
+                    new Area
                     {
-                        Name = "cat"
+                        Name = "haichau",
+                        Description = "Hải Châu"
                     },
-                    new Animal
+                    new Area
                     {
-                        Name = "dog"
+                        Name = "thanhkhe",
+                        Description="Thanh Khê"
                     },
-                    new Animal
+                    new Area
                     {
-                        Name = "others"
-                    }
-                );
-                context.SaveChanges();
-
-                context.Categories.AddRange(
-                    new Category
-                    {
-                        Name = "adopt"
+                        Name = "sontra",
+                        Description = "Sơn Trà"
                     },
-                    new Category
+                    new Area
                     {
-                        Name = "disease"
+                        Name = "lienchieu",
+                        Description = "Liên Chiểu"
                     },
-                    new Category
+                    new Area
                     {
-                        Name = "help"
-                    }
-                );
-                context.SaveChanges();
-
-                context.Cities.AddRange(
-                    new City
-                    {
-                        Name = "danang"
+                        Name = "camle",
+                        Description = "Cẩm Lệ"
                     },
-                    new City
+                    new Area
                     {
-                        Name = "hanoi"
-                    },
-                    new City
-                    {
-                        Name = "tphcm"
-                    },
-                    new City
-                    {
-                        Name = "others"
+                        Name = "hoavang",
+                        Description = "Hòa Vang"
                     }
                 );
                 context.SaveChanges();

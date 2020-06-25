@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PetWeb.Models
+namespace SemanticWeb.Models
 {
     public class Subscriber
     {

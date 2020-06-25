@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PetWeb.Models
+namespace SemanticWeb.Models
 {
-    public class City
+    public class Area
     {
-        public int CityId { get; set; }
+        public int AreaId { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
         public ICollection<Post> Posts { get; set; }
     }
 }

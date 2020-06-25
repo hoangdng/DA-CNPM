@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
-using PetWeb.Data;
+using SemanticWeb.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Routing;
 
-namespace PetWeb.Controllers
+namespace SemanticWeb.Controllers
 {
     public class SubscribeService : IHostedService, IDisposable
     {

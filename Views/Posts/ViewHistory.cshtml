@@ -18,10 +18,10 @@
                 @Html.DisplayNameFor(model => model.ImageURL)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PostedDate)
+                @Html.DisplayNameFor(model => model.DatePosted)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                @Html.DisplayNameFor(model => model.Area)
             </th>
             <th></th>
         </tr>
@@ -37,29 +37,12 @@
                     <img src="~/Images/@item.ImageURL" class="rounded-circle" width="40" height="40" asp-append-version="true" />
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PostedDate)
+                    @Html.DisplayFor(modelItem => item.DatePosted)
                 </td>
                 <td>
-                    @switch (item.Status.ToString())
-                    {
-                        case "Available":
-                            <span class="font-weight-normal">
-                                Chưa có người giúp
-                            </span>
-                            break;
-                        case "OnHold":
-                            <span class="font-weight-normal">
-                                Đang có người giúp
-                            </span>
-                            break;
-                        case "Solved":
-                            <span class="font-weight-normal">
-                                Đã xong
-                            </span>
-                            break;
-                        default:
-                            break;
-                    }
+                    <span class="font-weight-normal">
+                        @item.Area.Description
+                    </span>
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Chỉnh sửa</a> |

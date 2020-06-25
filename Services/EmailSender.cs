@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetWeb.Services
+namespace SemanticWeb.Services
 {
     public class EmailSender : IEmailSender
     {

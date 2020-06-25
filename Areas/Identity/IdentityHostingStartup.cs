@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PetWeb.Data;
+using SemanticWeb.Data;
 
-[assembly: HostingStartup(typeof(PetWeb.Areas.Identity.IdentityHostingStartup))]
-namespace PetWeb.Areas.Identity
+[assembly: HostingStartup(typeof(SemanticWeb.Areas.Identity.IdentityHostingStartup))]
+namespace SemanticWeb.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {

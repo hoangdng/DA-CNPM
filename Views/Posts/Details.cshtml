@@ -19,41 +19,19 @@
     <div class="col-6 mt-2 px-5">
         <h2 style="font-family: 'Pangolin', cursive;">@Model.Post.Title</h2>
         <p>
-            @Model.Post.Description
+            @Model.Post.Content
         </p>
         <div class="row">
             <div class="col-6">
                 <h6>
                     Ngày đăng:
-                    <span class="font-weight-normal"> @Model.Post.PostedDate.ToString("dd/MM/yyyy")</span>
+                    <span class="font-weight-normal"> @Model.Post.DatePosted.ToString("dd/MM/yyyy")</span>
                 </h6>
                 <h6>
                     Địa điểm:
-
-                    @switch (Model.Post.CityId)
-                    {
-                        case 1:
-                            <span class="font-weight-normal">
-                                Đà Nẵng
-                            </span>
-                            break;
-                        case 2:
-                            <span class="font-weight-normal">
-                                Hà Nội
-                            </span>
-                            break;
-                        case 3:
-                            <span class="font-weight-normal">
-                                Tp. Hồ Chí Minh
-                            </span>
-                            break;
-                        default:
-                            <span class="font-weight-normal">
-                                Khu vực khác
-                            </span>
-                            break;
-
-                    }
+                    <span class="font-weight-normal">
+                        @Model.Post.Area.Description
+                    </span>
                 </h6>
                 <h6>
                     Người đăng:
@@ -63,80 +41,6 @@
                         </a>
                     </span>
 
-                </h6>
-                <h6>
-                    Trạng thái:
-
-                    @switch (Model.Post.Status.ToString())
-                    {
-                        case "Available":
-                            <span class="font-weight-normal">
-                                Chưa có người giúp
-                            </span>
-                            break;
-                        case "OnHold":
-                            <span class="font-weight-normal">
-                                Đang có người giúp
-                            </span>
-                            break;
-                        case "Solved":
-                            <span class="font-weight-normal">
-                                Đã xong
-                            </span>
-                            break;
-                        default:
-                            break;
-                    }
-                </h6>
-            </div>
-            <div class="col-6">
-                <h6>
-                    Động vật:
-
-                    @switch (Model.Post.AnimalId)
-                    {
-                        case 1:
-                            <span class="font-weight-normal">
-                                Mèo
-                            </span>
-                            break;
-                        case 2:
-                            <span class="font-weight-normal">
-                                Chó
-                            </span>
-                            break;
-                        default:
-                            <span class="font-weight-normal">
-                                Khác
-                            </span>
-                            break;
-                    }
-                </h6>
-                <h6>
-                    Loại cứu trợ:
-
-                    @switch (Model.Post.CategoryId)
-                    {
-                        case 1:
-                            <span class="font-weight-normal">
-                                Nhận nuôi
-                            </span>
-                            break;
-                        case 2:
-                            <span class="font-weight-normal">
-                                Bệnh tật
-                            </span>
-                            break;
-                        default:
-                            <span class="font-weight-normal">
-                                Giúp đỡ
-                            </span>
-                            break;
-                    }
-                </h6>
-                <h6>
-                    Liên hệ:
-                    <span class="font-weight-normal">@UserManager.FindByIdAsync(Model.Post.UserID).Result.PhoneNumber</span>
                 </h6>
             </div>
         </div>
