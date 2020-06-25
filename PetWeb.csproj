@@ -5,6 +5,19 @@
     <UserSecretsId>aspnet-PetWeb-0262FF1D-0841-4D2C-AA8C-6E98155BD157</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20200529045427_test.cs" />
+    <Compile Remove="Data\Migrations\20200529045427_test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200530031923_SetPostedDateToDate.cs" />
+    <Compile Remove="Data\Migrations\20200530031923_SetPostedDateToDate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200530032304_SetPostedDateToDate.cs" />
+    <Compile Remove="Data\Migrations\20200530032304_SetPostedDateToDate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200530140216_NULL.cs" />
+    <Compile Remove="Data\Migrations\20200530140216_NULL.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200602133701_AddCategoryProperty.cs" />
+    <Compile Remove="Data\Migrations\20200602133701_AddCategoryProperty.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="MailKit" Version="2.7.0" />

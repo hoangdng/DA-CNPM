@@ -8,15 +8,15 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
-using SemanticWeb.Data;
+using PetWeb.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using SemanticWeb.Services;
+using PetWeb.Services;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 
-namespace SemanticWeb
+namespace PetWeb
 {
     public class Startup
     {

@@ -4,15 +4,15 @@
     ViewData["Title"] = "Đăng ký";
 }
 
-<div class="row mx-5" style="background-image: url(@Url.Content("~/images/icons/login.jpg")); background-size: 100% 100%;">
+<div class="row pb-5" style="background-image: url(@Url.Content("~/images/dog.jpg")); background-size: 90% 100%;">
 
     <div class="col-8">
     </div>
-    <div class="col-4 d-flex flex-column px-5 py-5 bg-dark" style="opacity:0.9;">
+    <div class="col-4 d-flex flex-column pr-5 pb-5">
         <section>
             <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                <h4 class="pt-4 text-center text-light">Tạo tài khoản mới</h4>
-                <hr class="bg-light" />
+                <h5 class="pt-4 text-center">Tạo tài khoản mới</h5>
+                <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <input asp-for="Input.Email" class="form-control" placeholder="Email" />
@@ -23,15 +23,15 @@
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Nhập lại password" />
+                    <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Nhập lại password"/>
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
                 <button type="submit" class="btn btn-signin btn-block mt-4">Đăng ký</button>
             </form>
         </section>
         <section>
-            <h5 class="text-center pt-3 text-light">Đăng ký bằng tài khoản khác: </h5>
-            <hr class="bg-light" />
+            <h5 class="text-center pt-3">Đăng ký bằng tài khoản khác: </h5>
+            <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
@@ -46,19 +46,19 @@
                 {
                     <form asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal text-center">
                         <div>
-
-                            @foreach (var provider in Model.ExternalLogins)
-                            {
-                                if (provider.Name == "Facebook")
+                            
+                                @foreach (var provider in Model.ExternalLogins)
                                 {
-                                    <button type="submit" class="btn btn-outline-primary mr-5" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src=@Url.Content("~/images/icons/facebook.png") alt="Alternate Text" /></button>
+                                    if (provider.Name == "Facebook")
+                                    {
+                                        <button type="submit" class="btn btn-outline-primary mr-5" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src=@Url.Content("~/images/icons/facebook.png") alt="Alternate Text" /></button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" class="btn btn-outline-danger" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src=@Url.Content("~/images/icons/gg.png") alt="Alternate Text" /></button>
+                                    }
                                 }
-                                else
-                                {
-                                    <button type="submit" class="btn btn-outline-danger" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><img src=@Url.Content("~/images/icons/gg.png") alt="Alternate Text" /></button>
-                                }
-                            }
-
+                            
                         </div>
                     </form>
                 }

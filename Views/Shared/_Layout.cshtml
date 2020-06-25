@@ -21,11 +21,11 @@
 <body>
     @*header*@
     <div class="load loader">
-        <img src=@Url.Content("~/images/icons/loader.gif")>
+        <img src=@Url.Content("~/images/icons/loader2.gif")>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 d-flex justify-content-between" id="headerFixed">
-        <a class="navbar-brand mx-5 pl-5" asp-area="" asp-controller="Home" asp-action="Index">
-            <img src=@Url.Content("~/images/icons/brand.png") alt="Pet Club Logo">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white px-5" id="headerFixed">
+        <a class="navbar-brand mx-4" asp-area="" asp-controller="Home" asp-action="Index">
+            <img src=@Url.Content("~/images/icons/logo.png") alt="Pet Club Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
             <span class="navbar-toggler-icon"></span>
@@ -42,8 +42,7 @@
         </div>
     </nav>
     @*header*@
-    @*<div class="@(ViewContext.RouteData.Values["Action"]!=null?ViewContext.RouteData.Values["Action"].ToString().Contains("Index") || ViewContext.RouteData.Values["Action"].ToString().Contains("Contact") ? "container-fluid" : "container":"container")">*@
-    <div class="container-fluid">
+    <div class="@(ViewContext.RouteData.Values["Action"]!=null?ViewContext.RouteData.Values["Action"].ToString().Contains("Index") || ViewContext.RouteData.Values["Action"].ToString().Contains("Contact") ? "container-fluid" : "container":"container")">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -51,7 +50,7 @@
 
     <footer class="border-top footer text-muted text-center">
         <div class="container">
-            &copy; 2020 - Du lịch Đà Nẵng cùng 123Travel - <a asp-area="" asp-controller="Home" asp-action="Contact">Liên hệ</a>
+            &copy; 2020 - Cứu trợ động vật tại Việt Nam- <a asp-area="" asp-controller="Home" asp-action="Contact">Liên hệ</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

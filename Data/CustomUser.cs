@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SemanticWeb.Data
+namespace PetWeb.Data
 {
     public class CustomUser : IdentityUser
     {

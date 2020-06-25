@@ -4,28 +4,41 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SemanticWeb.Models
+namespace PetWeb.Models
 {
     public class Post
     {
         public Post()
         {
-            DatePosted = DateTime.Now;
+            PostedDate = DateTime.Now;
+            Status = Status.Available;
         }
         public int Id { get; set; }
         [Display(Name = "Tiêu đề")]
         public string Title { get; set; }
-        [Display(Name = "Nội dung")]
-        public string Content { get; set; }
+        [Display(Name = "Mô tả")]
+        public string Description { get; set; }
         [Display(Name = "Hình ảnh")]
         public string ImageURL { get; set; }
         [DataType(DataType.Date)]
         [Display(Name = "Ngày đăng")]
-        public DateTime DatePosted { get; set; }
+        public DateTime PostedDate { get; set; }
+        [Display(Name = "Trạng thái")]
+        public Status Status { get; set; }
         public string UserID { get; set; }
-        [Display(Name = "Khu vực")]
-        public int AreaId { get; set; }
-        public Area Area { get; set; }
+        public int AnimalId { get; set; }
+        public Animal Animal { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
+        public int CityId { get; set; }
+        public City City { get; set; }
         public ICollection<Comment> Comments { get; set; }
+    }
+
+    public enum Status
+    {
+        Available,
+        OnHold,
+        Solved
     }
 }

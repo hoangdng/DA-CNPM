@@ -7,10 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using SemanticWeb.Models;
-using SemanticWeb.Controllers;
+using PetWeb.Models;
+using PetWeb.Controllers;
 
-namespace SemanticWeb
+namespace PetWeb
 {
     public class Program
     {

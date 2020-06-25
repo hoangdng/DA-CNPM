@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using SemanticWeb.Data;
+using PetWeb.Data;
 
-namespace SemanticWeb.Areas.Identity.Pages.Account.Manage
+namespace PetWeb.Areas.Identity.Pages.Account.Manage
 {
     public partial class EmailModel : PageModel
     {

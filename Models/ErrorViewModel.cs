@@ -1,6 +1,6 @@
 using System;
 
-namespace SemanticWeb.Models
+namespace PetWeb.Models
 {
     public class ErrorViewModel
     {

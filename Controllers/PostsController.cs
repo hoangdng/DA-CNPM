@@ -11,13 +11,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using SemanticWeb.Data;
-using SemanticWeb.Models;
-using SemanticWeb.ViewModels;
+using PetWeb.Data;
+using PetWeb.Models;
+using PetWeb.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
-namespace SemanticWeb.Controllers
+namespace PetWeb.Controllers
 {
     public class PostsController : Controller
     {
@@ -79,7 +79,7 @@ namespace SemanticWeb.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Content,AreaId,ImageURL")] PostViewModel vm)
+        public async Task<IActionResult> Create([Bind("Title,Description,AnimalId,CategoryId,CityId,ImageURL")] PostViewModel vm)
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             vm.UserID = currentUserId;
@@ -87,10 +87,13 @@ namespace SemanticWeb.Controllers
             var post = new Post()
             {
                 Title = vm.Title,
-                Content = vm.Content,
-                DatePosted = vm.DatePosted,
+                Description = vm.Description,
+                PostedDate = vm.PostedDate,
+                Status = vm.Status,
                 UserID = vm.UserID,
-                AreaId = vm.AreaId,
+                AnimalId = vm.AnimalId,
+                CategoryId = vm.CategoryId,
+                CityId = vm.CityId,
                 ImageURL = stringFileName
             };
             if (ModelState.IsValid)
@@ -139,7 +142,7 @@ namespace SemanticWeb.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,AreaId,ImageURL")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,AnimalId,CategoryId,CityId,Status,ImageURL")] Post post)
         {
             if (id != post.Id)
             {

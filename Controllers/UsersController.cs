@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SemanticWeb.Data;
-using SemanticWeb.ViewModels;
+using PetWeb.Data;
+using PetWeb.ViewModels;
 
-namespace SemanticWeb.Controllers
+namespace PetWeb.Controllers
 {
     public class UsersController : Controller
     {

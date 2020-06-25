@@ -4,18 +4,18 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SemanticWeb.Models
+namespace PetWeb.Models
 {
     public class Comment
     {
         public Comment()
         {
-            DateCommented = DateTime.Now;
+            DateComment = DateTime.Now;
         }
         public int Id { get; set; }
         public string Username { get; set; }
         [DataType(DataType.Date)]
-        public DateTime DateCommented { get; set; }
+        public DateTime DateComment { get; set; }
         public string Content { get; set; }
         public int PostId { get; set; }
         public Post Post { get; set; }

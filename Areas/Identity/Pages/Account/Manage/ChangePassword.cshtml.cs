@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using SemanticWeb.Data;
-namespace SemanticWeb.Areas.Identity.Pages.Account.Manage
+using PetWeb.Data;
+namespace PetWeb.Areas.Identity.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
     {

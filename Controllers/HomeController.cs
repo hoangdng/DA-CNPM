@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using SemanticWeb.Data;
-using SemanticWeb.Models;
+using PetWeb.Data;
+using PetWeb.Models;
 
 
-namespace SemanticWeb.Controllers
+namespace PetWeb.Controllers
 {
     public class HomeController : Controller
     {
@@ -46,22 +46,32 @@ namespace SemanticWeb.Controllers
             switch (duration)
             {
                 case "today":
-                    filteredPosts = filteredPosts.Where(p => p.DatePosted.Date == DateTime.Now.Date);
+                    filteredPosts = filteredPosts.Where(p => p.PostedDate.Date == DateTime.Now.Date);
                     break;
                 case "3days":
-                    filteredPosts = filteredPosts.Where(p => p.DatePosted.Date.AddDays(3) >= DateTime.Now.Date);
+                    filteredPosts = filteredPosts.Where(p => p.PostedDate.Date.AddDays(3) >= DateTime.Now.Date);
                     break;
                 case "week":
-                    filteredPosts = filteredPosts.Where(p => p.DatePosted.Date.AddDays(7) >= DateTime.Now.Date);
+                    filteredPosts = filteredPosts.Where(p => p.PostedDate.Date.AddDays(7) >= DateTime.Now.Date);
                     break;
                 default:
                     break;
             }
 
+            //Filter by category
+            var category = collection["category"].ToArray();
+            if (category.Length != 0)
+                filteredPosts = filteredPosts.Where(p => category.Contains(p.Category.Name));
+
+            //Filter by animal
+            var animal = collection["animal"].ToArray();
+            if (animal.Length != 0)
+                filteredPosts = filteredPosts.Where(p => animal.Contains(p.Animal.Name));
+
             //Filter by area
             var area = collection.ContainsKey("area") == false ? "all" : collection["area"][0];
             if (area != "all")
-                filteredPosts = filteredPosts.Where(p => p.Area.Name == area);
+                filteredPosts = filteredPosts.Where(p => p.City.Name == area);
             
             //Search by title
             var search = collection.ContainsKey("searchcontent").ToString() == "" ? "all" : collection["searchcontent"][0];

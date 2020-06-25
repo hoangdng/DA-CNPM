@@ -1,10 +1,10 @@
-# 123Travel - du lịch Đà Nẵng
+# Cứu trợ động vật
 
-### Project môn SemanticWeb (thầy Huỳnh Công Pháp)
+### Đồ án CNPM nhóm 2 (lớp 16PFIEV3)
 
 *   #### Tạo data mẫu để test:
 
-    Mở SQLServer --> chọn database Semantic --> chạy file data.sql (nếu không chạy được thì mở file đó bằng notepad rồi copy lệnh vào chạy trong sql)
+    Mở SQLServer --> chọn database PetWeb --> chạy file data.sql (nếu không chạy được thì mở file đó bằng notepad rồi copy lệnh vào chạy trong sql)
 
 * * *
 

@@ -1,4 +1,4 @@
-﻿@model SemanticWeb.ViewModels.UserViewModel
+﻿@model PetWeb.ViewModels.UserViewModel
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -84,10 +84,10 @@
                             <a asp-action="Details" asp-route-id="@item.Id" asp-controller="Posts">@Html.DisplayFor(modelItem => item.Title)</a>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DatePosted)
+                            @Html.DisplayFor(modelItem => item.PostedDate)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Area.Description)
+                            @Html.DisplayFor(modelItem => item.Status)
                         </td>
                     </tr>
                 }

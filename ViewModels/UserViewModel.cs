@@ -1,10 +1,10 @@
-﻿using SemanticWeb.Models;
+﻿using PetWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SemanticWeb.ViewModels
+namespace PetWeb.ViewModels
 {
     public class UserViewModel
     {

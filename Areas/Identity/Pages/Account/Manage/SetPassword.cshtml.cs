@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SemanticWeb.Data;
+using PetWeb.Data;
 
-namespace SemanticWeb.Areas.Identity.Pages.Account.Manage
+namespace PetWeb.Areas.Identity.Pages.Account.Manage
 {
     public class SetPasswordModel : PageModel
     {
