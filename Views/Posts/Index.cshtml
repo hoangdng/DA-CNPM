@@ -5,13 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1 class="my-4 text-center" style="font-family: 'Pangolin', cursive;">Tất cả bài đăng</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<table class="table table-striped px-5">
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
@@ -42,11 +39,12 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    <img src="~/Images/@item.ImageURL" class="rounded-circle" width="40" height="40" asp-append-version="true" />
+                    <img src="~/Images/@item.ImageURL" class="rounded-circle zoom-img" width="40" height="40" asp-append-version="true" />
                 </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
                 </td>
             </tr>
         }

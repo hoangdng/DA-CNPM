@@ -6,8 +6,9 @@
 <div class="card-columns">
     @foreach (var item in Model)
     {
+        var animalName = item.AnimalId == 1 ? "Mèo" : item.AnimalId == 2 ? "Chó" : "Động vật khác";
         <div class="card border-info  mb-3">
-            <img class="card-img-top card-thumbnail" src="~/images/@item.ImageURL" alt="Card image cap">
+            <img class="card-img-top card-thumbnail" src="~/images/@item.ImageURL" alt="Card image cap" data-toggle="tooltip" data-placement="top" title=@animalName>
             <div class="card-body" style="height:160px;">
                 <h5 class="card-title d-flex align-items-center" style="height:50px;">@item.Title</h5>
                 <p>
