@@ -41,25 +41,25 @@
                 </td>
                 <td>
                     @switch (item.Status.ToString())
-                    {
-                        case "Available":
-                            <span class="font-weight-normal">
-                                Chưa có người giúp
-                            </span>
-                            break;
-                        case "OnHold":
-                            <span class="font-weight-normal">
-                                Đang có người giúp
-                            </span>
-                            break;
-                        case "Solved":
-                            <span class="font-weight-normal">
-                                Đã xong
-                            </span>
-                            break;
-                        default:
-                            break;
-                    }
+                        {
+                            case "Available":
+                                <span class="font-weight-normal">
+                                    Chưa có người giúp
+                                </span>
+                                break;
+                            case "OnHold":
+                                <span class="font-weight-normal">
+                                    Đang có người giúp
+                                </span>
+                                break;
+                            case "Solved":
+                                <span class="font-weight-normal">
+                                    Đã xong
+                                </span>
+                                break;
+                            default:
+                                break;
+                        }
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Chỉnh sửa</a> |

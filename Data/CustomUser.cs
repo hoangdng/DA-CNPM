@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using PetWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,6 @@ namespace PetWeb.Data
 
         [PersonalData]
         public DateTime DateJoined { get; set; }
+        public ICollection<UserPost> UserPosts { get; set; }
     }
 }

@@ -253,5 +253,14 @@ namespace PetWeb.Controllers
             return PartialView("CommentPartial", commentViewModel);
             //return RedirectToAction("Details", new { id = postId });
         }
+
+        public async Task<ActionResult> ViewSavedPost()
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var postIds = await _context.UserPosts.Where(up => up.CustomUserId == currentUserId).Select(up => up.PostId).ToListAsync();
+            return View(await _context.Posts.Where(post => postIds.Contains(post.Id)).ToListAsync());
+        }
+
+
     }
 }
