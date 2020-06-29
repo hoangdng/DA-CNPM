@@ -35,25 +35,8 @@
                     }
                 </p>
                 <p>
-                    <span><strong>Loại cứu trợ:</strong></span>
-                    @switch (@item.CategoryId)
-                    {
-                        case 1:
-                            <span class="font-weight-normal">
-                                Nhận nuôi
-                            </span>
-                            break;
-                        case 2:
-                            <span class="font-weight-normal">
-                                Bệnh tật
-                            </span>
-                            break;
-                        default:
-                            <span class="font-weight-normal">
-                                Giúp đỡ
-                            </span>
-                            break;
-                    }
+                    <span><strong>Loại cứu trợ:
+                        </strong>@item.Category.Description</span>
                 </p>
             </div>
 
@@ -65,6 +48,17 @@
                         Xem chi tiết
                     </button>*@
                 <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id" asp-controller="Posts">Xem chi tiết</a>
+                <div class="dropdown">
+                    <button class="btn btn-info" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <form method="post" asp-controller="Users" asp-action="SavePost" class="form-savepost">
+                            <input type="hidden" value=@item.Id name="postId" />
+                            <button type="submit" class="dropdown-item form-control save-button">Lưu</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PetWeb.Models.Report>
+
+@{
+    ViewData["Title"] = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="my-3 text-center" style="font-family: 'Pangolin', cursive;">Danh sách các report</h1>
+
+<table class="table px-5 mx-5">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.DateReported)</a>
+            </th>
+            <th>
+                Nội dụng
+            </th>
+            <th>
+                Bài đăng
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateReported)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.PostId">
+                        Link
+                    </a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Xóa report</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

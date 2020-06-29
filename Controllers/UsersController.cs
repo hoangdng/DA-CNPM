@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Security.Claims;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PetWeb.Data;
 using PetWeb.ViewModels;
+using PetWeb.Models;
 
 namespace PetWeb.Controllers
 {
@@ -115,6 +115,24 @@ namespace PetWeb.Controllers
             var userToDelete = await _userManager.FindByIdAsync(id);
             await _userManager.DeleteAsync(userToDelete);
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> SavePost(IFormCollection collection)
+        {
+            int postId = Convert.ToInt32(collection["postId"][0]);
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var currentPost = await _context.Posts.Where(p => p.Id == postId).FirstOrDefaultAsync();
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            UserPost newUserPost = new UserPost
+            {
+                CustomUserId = userId,
+                CustomUser = currentUser,
+                PostId = postId,
+                Post = currentPost
+            };
+            _context.Add(newUserPost);
+            await _context.SaveChangesAsync();
+            return PartialView("~/Views/Home/NewsFeedPartial.cshtml", _context.Posts.ToList());
         }
 
     }

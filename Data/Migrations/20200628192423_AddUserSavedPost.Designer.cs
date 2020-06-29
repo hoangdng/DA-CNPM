@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetWeb.Data;
 
 namespace PetWeb.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200628192423_AddUserSavedPost")]
+    partial class AddUserSavedPost
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -350,29 +352,6 @@ namespace PetWeb.Data.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("PetWeb.Models.Report", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateReported")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostId");
-
-                    b.ToTable("Reports");
-                });
-
             modelBuilder.Entity("PetWeb.Models.Subscriber", b =>
                 {
                     b.Property<int>("SubscriberID")
@@ -480,15 +459,6 @@ namespace PetWeb.Data.Migrations
                     b.HasOne("PetWeb.Models.City", "City")
                         .WithMany("Posts")
                         .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PetWeb.Models.Report", b =>
-                {
-                    b.HasOne("PetWeb.Models.Post", "Post")
-                        .WithMany()
-                        .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
