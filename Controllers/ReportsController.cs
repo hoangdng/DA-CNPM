@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -43,26 +45,22 @@ namespace PetWeb.Controllers
             return View(report);
         }
 
-        // GET: Reports/Create
-        public IActionResult Create()
+        [Authorize]
+        public async Task<IActionResult> Create(IFormCollection collection)
         {
-            return View();
-        }
-
-        // POST: Reports/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Content,DateReported,PostId")] Report report)
-        {
-            if (ModelState.IsValid)
+            int postId = Convert.ToInt32(collection["postId"][0]);
+            string content = collection["content"][0].ToString();
+            var post = _context.Posts.Where(p => p.Id == postId).FirstOrDefault();
+            var report = new Report()
             {
-                _context.Add(report);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(report);
+                Content = content,
+                Post = post,
+                PostId = postId
+            };
+            _context.Add(report);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: Reports/Edit/5
