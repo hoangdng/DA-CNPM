@@ -78,7 +78,7 @@ namespace PetWeb.Controllers
             if (search != "all")
                 filteredPosts = filteredPosts.Where(p => p.Title.Contains(search));
 
-            return PartialView("NewsFeedPartial", filteredPosts.ToList());
+            return PartialView("NewsFeedPartial", filteredPosts.Include(c => c.Category).ToList());
 
         }
 

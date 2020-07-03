@@ -36,7 +36,7 @@ namespace PetWeb.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Index(string postedDate)
         {
-            return View(await _context.Posts.ToListAsync());
+            return View(await _context.Posts.Include(c => c.Category).ToListAsync());
         }
 
         // GET: Posts/History
